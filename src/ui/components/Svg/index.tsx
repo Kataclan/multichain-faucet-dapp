@@ -1,0 +1,11 @@
+export { default as BinanceIcon } from './Icons/Binance';
+export { default as EthereumIcon } from './Icons/Ethereum';
+export { default as GitbookIcon } from './Icons/Gitbook';
+export { default as GithubIcon } from './Icons/Github';
+export { default as MediumIcon } from './Icons/Medium';
+export { default as TelegramIcon } from './Icons/Telegram';
+export { default as PolkadotIcon } from './Icons/Polkadot';
+export { default as PolygonIcon } from './Icons/Polygon';
+export { default as TwitterIcon } from './Icons/Twitter';
+export { default as Svg } from './Svg';
+export type { SvgProps } from './types';
