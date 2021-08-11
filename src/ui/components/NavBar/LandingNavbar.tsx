@@ -13,14 +13,14 @@ const StyledLandingNavBar = styled.nav`
   left: 0;
   transition: top 0.2s;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding-left: 8px;
   padding-right: 16px;
   width: 100%;
   height: ${MENU_HEIGHT}px;
-  background-color: ${({ theme }) => theme.nav.background};
-  border-bottom: solid 2px rgba(133, 133, 133, 0.1);
+  background-color: ${({ theme }) => theme.colors.foreground};
+  border-bottom: solid 1px ${({ theme }) => theme.colors.outline};
   z-index: 20;
 `;
 

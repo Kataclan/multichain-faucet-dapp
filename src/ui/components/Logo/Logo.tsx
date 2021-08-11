@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Flex } from '../Box';
 import { Heading } from '../Heading';
+import { FaucetIcon } from '../Svg';
 
 interface Props {
   href?: string;
@@ -11,37 +12,22 @@ interface Props {
 const StyledLink = styled(Link)`
   display: flex;
   align-items: center;
-  .mobile-icon,
-  .desktop-icon {
-    width: 32px;
-  }
-  .mobile-icon {
-    ${({ theme }) => theme.mediaQueries.nav} {
-      display: none;
-    }
-  }
-  .desktop-icon-wrapper {
-    display: none;
-    ${({ theme }) => theme.mediaQueries.nav} {
-      display: flex;
-    }
-  }
 `;
 
 const Logo: React.FC<Props> = ({ href = '/' }) => {
   const innerLogo = (
     <>
-      <Flex alignItems="center" className="desktop-icon-wrapper">
-        <Heading ml={2}>zeni protocol</Heading>
+      <Flex flexDirection="row" alignItems="center">
+        <Heading>MULTIVALENT</Heading>
+        <FaucetIcon width="48px" height="48px" />
+        <Heading>FAUCET</Heading>
       </Flex>
     </>
   );
 
   return (
     <Flex>
-      <StyledLink to={href} aria-label={`Zeni Protocol`}>
-        {innerLogo}
-      </StyledLink>
+      <StyledLink to={href}>{innerLogo}</StyledLink>
     </Flex>
   );
 };

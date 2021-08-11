@@ -18,8 +18,9 @@ export const baseColors = {
 
 export const darkColors: Colors = {
   ...baseColors,
-  background: '#131019',
-  backroundNav: '#131019',
+  background: '#191c1f',
+  foreground: '#1f2327',
+  outline: '#353535',
   buttonDisabled: '#8D8D8D',
   contrast: '#FFFFFF',
   disabled: '#908b8b',
@@ -31,9 +32,7 @@ export const darkColors: Colors = {
   text: '#e5d3f7',
   textDisabled: '#f6f1f1',
   textSubtle: '#ffedff',
-  gradients: {
-    zeni: `linear-gradient(to right, ${baseColors.primary}, ${baseColors.secondary})`
-  }
+  gradients: {}
 };
 
 export const lightColors = darkColors;

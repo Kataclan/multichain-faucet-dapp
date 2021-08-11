@@ -1,5 +1,6 @@
 export { default as BinanceIcon } from './Icons/Binance';
 export { default as EthereumIcon } from './Icons/Ethereum';
+export { default as FaucetIcon } from './Icons/Faucet';
 export { default as GitbookIcon } from './Icons/Gitbook';
 export { default as GithubIcon } from './Icons/Github';
 export { default as MediumIcon } from './Icons/Medium';

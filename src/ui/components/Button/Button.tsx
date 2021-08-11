@@ -10,11 +10,11 @@ const Button = <E extends ElementType = 'button'>(props: ButtonProps<E>): JSX.El
   const classNames = className ? [className] : [];
 
   if (isLoading) {
-    classNames.push('zeni-button--loading');
+    classNames.push('multivalent-faucet-button--loading');
   }
 
   if (isDisabled && !isLoading) {
-    classNames.push('zeni-button--disabled');
+    classNames.push('multivalent-faucet-button--disabled');
   }
 
   return (

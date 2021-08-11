@@ -1,6 +1,6 @@
 import { Colors, Breakpoints, MediaQueries, Spacing, Shadows, Radii, ZIndices, NavTheme } from './types';
 
-export interface ZeniTheme {
+export interface MultivalentFaucetTheme {
   siteWidth: number;
   isDark: boolean;
   colors: Colors;

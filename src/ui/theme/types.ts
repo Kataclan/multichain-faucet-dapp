@@ -21,9 +21,7 @@ export type Shadows = {
   button: string;
 };
 
-export type Gradients = {
-  zeni: string;
-};
+export type Gradients = {};
 
 export type Colors = {
   // Base
@@ -42,7 +40,8 @@ export type Colors = {
 
   // THEMED
   background: string;
-  backroundNav: string;
+  foreground: string;
+  outline: string;
   buttonDisabled: string;
   contrast: string;
   disabled: string;
