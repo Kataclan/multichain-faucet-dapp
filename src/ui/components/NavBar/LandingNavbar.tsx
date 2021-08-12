@@ -1,4 +1,5 @@
 import React from 'react';
+import { ConnectButton } from 'components';
 import styled from 'styled-components';
 import { MENU_HEIGHT } from 'ui/config';
 import { Logo } from '../Logo';
@@ -24,11 +25,17 @@ const StyledLandingNavBar = styled.nav`
   z-index: 20;
 `;
 
+const StyledConnectButton = styled(ConnectButton)`
+  position: absolute;
+  right: 16px;
+`;
+
 const LandingNavbar = () => {
   return (
     <Wrapper>
       <StyledLandingNavBar>
         <Logo />
+        <StyledConnectButton>CONNECT</StyledConnectButton>
       </StyledLandingNavBar>
     </Wrapper>
   );

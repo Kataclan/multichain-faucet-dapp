@@ -54,6 +54,10 @@ export type Colors = {
   textDisabled: string;
   textSubtle: string;
   gradients: Gradients;
+
+  // COMPONENTS
+  card: string;
+  overlay: string;
 };
 
 export type ZIndices = {

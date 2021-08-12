@@ -1,15 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
-import './fonts/japanese_2020.ttf';
 import './fonts/biko_bold.otf';
 import './fonts/biko_regular.otf';
 
 const ResetCSS = createGlobalStyle`
   /* prettier-ignore */
-
-  @font-face {
-    font-family: "Japanese";
-    src: local("Japanese"), url("/fonts/japanese_2020.ttf") format("truetype");
-  }
   @font-face {
     font-family: "Biko";
     src: local("Biko"),url("/fonts/biko_regular.otf") format("truetype");

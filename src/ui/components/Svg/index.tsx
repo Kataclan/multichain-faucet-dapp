@@ -1,8 +1,12 @@
+export { default as ArrowBackIcon } from './Icons/ArrowBack';
 export { default as BinanceIcon } from './Icons/Binance';
+export { default as CloseIcon } from './Icons/Close';
+export { default as CopyIcon } from './Icons/Copy';
 export { default as EthereumIcon } from './Icons/Ethereum';
 export { default as FaucetIcon } from './Icons/Faucet';
 export { default as GitbookIcon } from './Icons/Gitbook';
 export { default as GithubIcon } from './Icons/Github';
+export { default as HelpIcon } from './Icons/Help';
 export { default as MediumIcon } from './Icons/Medium';
 export { default as TelegramIcon } from './Icons/Telegram';
 export { default as PolkadotIcon } from './Icons/Polkadot';

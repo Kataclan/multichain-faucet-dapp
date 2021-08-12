@@ -1,3 +1,4 @@
+export { default as ConnectButton } from './ConnectButton';
 export { LandingContainer, Container } from './Container';
 export { default as GlobalStyle } from './GlobalStyle';
 export { default as Page } from './Page';

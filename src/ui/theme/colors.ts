@@ -1,12 +1,12 @@
 import { Colors } from './types';
 
 export const baseColors = {
-  primary: '#f10098',
-  primaryBright: '#ff99ff',
-  primaryDark: '#e6009a',
-  secondary: '#8600e2',
-  secondaryBright: '',
-  secondaryDark: '',
+  primary: '#00c988',
+  primaryBright: '#41e6a2',
+  primaryDark: '#00ad6e',
+  secondary: '#424242',
+  secondaryBright: '#595959',
+  secondaryDark: '#000000',
   tertiary: '#353547',
   success: '#00C851',
   warning: '#ffbb33',
@@ -27,12 +27,15 @@ export const darkColors: Colors = {
   dropdown: '#1E1D20',
   dropdownDeep: '#100C18',
   iconDisabled: '#8D8D8D',
-  input: '#372F47',
+  input: '#292929',
   invertedContrast: '#191326',
-  text: '#e5d3f7',
-  textDisabled: '#f6f1f1',
+  text: '#fafafa',
+  textDisabled: '#b9babb',
   textSubtle: '#ffedff',
-  gradients: {}
+  gradients: {},
+  // COMPONENTS
+  card: '#1f2327',
+  overlay: '#212121'
 };
 
 export const lightColors = darkColors;
