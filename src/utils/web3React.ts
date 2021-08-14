@@ -9,7 +9,7 @@ import Web3 from 'web3';
 const POLLING_INTERVAL = 12000;
 const rpcUrl = getBscNodeUrl();
 const chainId = parseInt(process.env.REACT_APP_BSC_CHAIN_ID, 10);
-const testChainId = parseInt(process.env.REACT_APP_BSC_TEST__CHAIN_ID, 10);
+// const testChainId = parseInt(process.env.REACT_APP_BSC_TEST__CHAIN_ID, 10);
 
 const injected = new InjectedConnector({ supportedChainIds: [56, 53] });
 

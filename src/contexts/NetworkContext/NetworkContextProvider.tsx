@@ -1,5 +1,4 @@
 import { useWeb3React } from '@web3-react/core';
-import useActiveWeb3React from 'hooks/useActiveWeb3React';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import networks from 'ui/widgets/NetworkModal/config';
@@ -16,11 +15,9 @@ const NetworkContext = React.createContext<NetworkContextApi>({
 
 const NetworkContextProvider: React.FC<{}> = ({ children }) => {
   const [network, setNetworkConfig] = useState<NetworkState>(initialState);
-  const { account, chainId, library } = useWeb3React();
+  const { account, chainId } = useWeb3React();
 
   useEffect(() => {
-    console.log('CHAIN ID', chainId);
-    console.log('Library', library);
     if (account) {
       const networkConfig = networks.find((n) => n.chainId === chainId);
       if (networkConfig) {

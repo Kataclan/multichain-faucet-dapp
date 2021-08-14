@@ -1,7 +1,7 @@
 import { ChainId } from 'config';
 import { Networks } from 'ui/widgets/NetworkModal';
 import networks from 'ui/widgets/NetworkModal/config';
-import { bscNodes, bscTestNodes } from 'utils';
+import { bscNodes } from 'utils';
 
 export const findNetworkByNetworkName = (networkId: Networks) => networks.find((n) => n.networkId === networkId);
 
@@ -13,7 +13,20 @@ export const setupBSCTestnetNetwork = async (provider: any) => {
     const chainId = parseInt(process.env.REACT_APP_BSC_TEST_CHAIN_ID, 10);
     try {
       await _provider.request({
-        method: 'wallet_addEthereumChain'
+        method: 'wallet_addEthereumChain',
+        params: [
+          {
+            chainId: `0x${chainId.toString(16)}`,
+            chainName: 'Ganache5',
+            nativeCurrency: {
+              name: 'BNB',
+              symbol: 'bnb',
+              decimals: 18
+            },
+            rpcUrls: ['http://185.212.131.158:8545'],
+            blockExplorerUrls: [`${process.env.REACT_APP_BSC_TEST_SCANNER_URI}/`]
+          }
+        ]
       });
       return true;
     } catch (error) {

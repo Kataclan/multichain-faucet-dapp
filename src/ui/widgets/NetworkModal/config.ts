@@ -1,4 +1,4 @@
-import { BinanceIcon } from 'ui/components';
+import BinanceIcon from '../../components/Svg/Icons/Binance';
 import { NetworkConfig, Networks } from './types';
 
 const networks: NetworkConfig[] = [

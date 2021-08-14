@@ -29,7 +29,7 @@ const NetworkCard: React.FC<Props> = ({ networkSetup, networkConfig, onDismiss, 
       <Text bold color="primary" mr="16px">
         {title}
       </Text>
-      {/* <Icon width="32px" /> */}
+      <Icon width="32px" />
     </Button>
   );
 };

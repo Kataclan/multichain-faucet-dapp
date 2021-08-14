@@ -1,5 +1,3 @@
-import { bscNodes } from './getRpcUrl';
-
 /**
  * Prompt the user to add a custom token to metamask
  * @param tokenAddress

@@ -12,9 +12,8 @@ import {
 import useTranslation from './useTranslation';
 import { connectorLocalStorageKey, ConnectorNames } from 'ui';
 import { connectorsByName } from 'utils';
-import { networkLocalStorageKey, Networks } from 'ui/widgets/NetworkModal';
+import { networkLocalStorageKey } from 'ui/widgets/NetworkModal';
 import { setupNetworkById } from 'contexts/NetworkContext/setupNetworkHelpers';
-import useActiveWeb3React from './useActiveWeb3React';
 import { ChainId } from 'config';
 
 const useAuth = () => {

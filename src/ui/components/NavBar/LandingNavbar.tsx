@@ -37,7 +37,6 @@ const WrapperActions = styled(Flex)`
 
 const LandingNavbar = () => {
   const { account } = useWeb3React();
-  console.log(account);
   const { login, logout } = useAuth();
   return (
     <Wrapper>

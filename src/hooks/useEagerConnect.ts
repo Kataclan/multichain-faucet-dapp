@@ -23,7 +23,6 @@ const useEagerConnect = () => {
     const connectorId = window.localStorage.getItem(connectorLocalStorageKey) as ConnectorNames;
     const networkName = window.localStorage.getItem(networkLocalStorageKey) as Networks;
     if (connectorId) {
-      console.log('ConnectorId: ', connectorId);
       const isConnectorBinanceChain = connectorId === ConnectorNames.BSC;
       const isBinanceChainDefined = Reflect.has(window, 'BinanceChain');
       if (isConnectorBinanceChain && !isBinanceChainDefined) {
