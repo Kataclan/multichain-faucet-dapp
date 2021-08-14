@@ -10,7 +10,7 @@ const networks: NetworkConfig[] = [
   },
   {
     chainId: 53,
-    title: 'Ganache5',
+    title: 'Zeni Test',
     icon: BinanceIcon,
     networkId: Networks.BSCTest
   }
