@@ -9,27 +9,31 @@ import {
   UserRejectedRequestError as UserRejectedRequestErrorWalletConnect,
   WalletConnectConnector
 } from '@web3-react/walletconnect-connector';
-import { connectorsByName, CONNECTOR_LOCALSTORAGE_KEY } from 'utils/web3React';
-import { setupPolygonNetwork } from 'utils/wallet';
 import useTranslation from './useTranslation';
-import { ConnectorNames } from 'ui';
+import { connectorLocalStorageKey, ConnectorNames } from 'ui';
+import { connectorsByName } from 'utils';
+import { networkLocalStorageKey, Networks } from 'ui/widgets/NetworkModal';
+import { setupNetworkById } from 'contexts/NetworkContext/setupNetworkHelpers';
+import useActiveWeb3React from './useActiveWeb3React';
+import { ChainId } from 'config';
 
 const useAuth = () => {
   const { t } = useTranslation();
-  const { activate, deactivate } = useWeb3React();
+  const { activate, deactivate, library } = useWeb3React();
 
   const login = useCallback(
-    (connectorID: ConnectorNames) => {
+    (connectorID: ConnectorNames, chainId = ChainId.ZeniTestnet) => {
       const connector = connectorsByName[connectorID];
       if (connector) {
         activate(connector, async (error: Error) => {
           if (error instanceof UnsupportedChainIdError) {
-            const hasSetup = await setupPolygonNetwork();
+            const hasSetup = await setupNetworkById(chainId, library);
             if (hasSetup) {
               activate(connector);
             }
           } else {
-            window.localStorage.removeItem(CONNECTOR_LOCALSTORAGE_KEY);
+            window.localStorage.removeItem(connectorLocalStorageKey);
+            window.localStorage.removeItem(networkLocalStorageKey);
             if (error instanceof NoEthereumProviderError || error instanceof NoBscProviderError) {
               console.error(t('Provider Error'), t('No provider was found'));
             } else if (
@@ -50,28 +54,21 @@ const useAuth = () => {
         console.error(t('Unable to find connector'), t('The connector config is wrong'));
       }
     },
-    [t, activate]
+    [t, activate, library]
   );
 
-  const logoutPolygon = useCallback(() => {
+  const logout = useCallback(() => {
     deactivate();
     // This localStorage key is set by @web3-react/walletconnect-connector
     if (window.localStorage.getItem('walletconnect')) {
       connectorsByName.walletconnect.close();
       connectorsByName.walletconnect.walletConnectProvider = null;
     }
+
+    window.localStorage.removeItem(networkLocalStorageKey);
   }, [deactivate]);
 
-  // const logoutBsc = useCallback(() => {
-  //   deactivate();
-  //   // This localStorage key is set by @web3-react/walletconnect-connector
-  //   if (window.localStorage.getItem('walletconnect')) {
-  //     connectorsByName.walletconnect_bsc.close();
-  //     connectorsByName.walletconnect_bsc.walletConnectProvider = null;
-  //   }
-  // }, [deactivate]);
-
-  return { login, logoutPolygon };
+  return { login, logout };
 };
 
 export default useAuth;

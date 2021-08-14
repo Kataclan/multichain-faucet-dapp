@@ -18,7 +18,7 @@ const Logo: React.FC<Props> = ({ href = '/' }) => {
   const innerLogo = (
     <>
       <Flex flexDirection="row" alignItems="center">
-        <Heading>MULTIVALENT</Heading>
+        <Heading>OPEN</Heading>
         <FaucetIcon width="48px" height="48px" />
         <Heading>FAUCET</Heading>
       </Flex>

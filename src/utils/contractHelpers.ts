@@ -1,16 +1,17 @@
-import { ethers } from 'ethers';
-import { FaucetAbi, TokenAbi } from 'config';
-import simpleRpcProvider from './bscRpcProvider';
+import { ChainId, FaucetAbi, TokenAbi } from 'config';
+import { getRpcProvider } from 'utils';
+import Web3 from 'web3';
+import { AbiItem } from 'web3-utils';
 
-const getContract = (abi: any, address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
-  const signerOrProvider = signer ?? simpleRpcProvider;
-  return new ethers.Contract(address, abi, signerOrProvider);
+const getContract = (chainId: ChainId, abi: any, address: string, web3?: Web3) => {
+  const _web3 = web3 ?? new Web3(getRpcProvider(chainId));
+  return new _web3.eth.Contract(abi as unknown as AbiItem, address);
 };
 
-export const getFaucetContract = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
-  return getContract(FaucetAbi, address, signer);
+export const getFaucetContract = (chainId: ChainId, address: string, web3?: Web3) => {
+  return getContract(chainId || ChainId.ZeniTestnet, FaucetAbi, address, web3);
 };
 
-export const getTokenContract = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
-  return getContract(TokenAbi, address, signer);
+export const getTokenContract = (chainId: ChainId, address: string, web3?: Web3) => {
+  return getContract(chainId || ChainId.ZeniTestnet, TokenAbi, address, web3);
 };

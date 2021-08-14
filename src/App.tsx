@@ -1,4 +1,5 @@
 import { GlobalStyle, PageLoader, SuspenseWithChunkError } from 'components';
+import { useEagerConnect } from 'hooks';
 import React, { lazy } from 'react';
 import { Navigate, BrowserRouter as Router, useRoutes } from 'react-router-dom';
 import { LandingLayout } from 'ui/components/Layout';
@@ -23,6 +24,7 @@ const App: React.FC = (): JSX.Element => {
 };
 
 const AppWrapper: React.FC = (): JSX.Element => {
+  useEagerConnect();
   return (
     <Router>
       <ResetCSS />

@@ -33,11 +33,6 @@ const connectors: Config[] = [
     icon: WalletConnect,
     connectorID: ConnectorNames.WalletConnect
   },
-  // {
-  //   title: 'WalletConnect BSC',
-  //   icon: WalletConnect,
-  //   connectorID: ConnectorNames.WalletConnectBsc
-  // },
   {
     title: 'Binance Chain Wallet',
     icon: BinanceChain,
@@ -51,4 +46,4 @@ const connectors: Config[] = [
 ];
 
 export default connectors;
-export const connectorLocalStorageKey = 'connectorId';
+export const connectorLocalStorageKey = 'openfaucet_connectorId';

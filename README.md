@@ -1,5 +1,5 @@
-# multivalent-faucet
- Multivalent Faucet DApp
+# open-faucet
+ OpenFaucet DApp
 
 
 ## License

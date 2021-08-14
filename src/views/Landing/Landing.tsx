@@ -3,6 +3,7 @@ import { Page } from 'components';
 import { useTranslation } from 'hooks';
 import styled from 'styled-components';
 import { Text } from 'ui';
+import useActiveWeb3React from 'hooks/useActiveWeb3React';
 
 const LandingPage = styled(Page)`
   position: relative;
@@ -15,9 +16,10 @@ const LandingPage = styled(Page)`
 
 function Landing() {
   const { t } = useTranslation();
+  const { account } = useActiveWeb3React();
   return (
     <LandingPage>
-      <Text>{t('HELLO')}</Text>
+      <Text>{account || t('Not connected')}</Text>
     </LandingPage>
   );
 }

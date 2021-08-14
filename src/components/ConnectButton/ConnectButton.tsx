@@ -1,18 +1,46 @@
 import React from 'react';
-import useAuth from 'hooks/useAuth';
-import { Button, useWalletModal } from 'ui';
-import { useTranslation } from 'hooks';
+import { Button, Login, useWalletModal } from 'ui';
 
-const ConnectWalletButton = (props) => {
-  const { t } = useTranslation();
-  const { login, logoutPolygon } = useAuth();
-  const { onPresentConnectModal } = useWalletModal(login, logoutPolygon);
+interface Props {
+  account?: string;
+  login: Login;
+  logout: () => void;
+}
 
+const ConnectButton: React.FC<Props> = ({ account, login, logout }) => {
+  const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(login, logout, account);
+  const accountEllipsis = account ? `${account.substring(0, 4)}...${account.substring(account.length - 4)}` : null;
   return (
-    <Button onClick={onPresentConnectModal} {...props}>
-      {t('Connect Wallet')}
-    </Button>
+    <div>
+      {account ? (
+        <Button
+          scale="sm"
+          variant="primary"
+          onClick={() => {
+            onPresentAccountModal();
+          }}
+        >
+          {accountEllipsis}
+        </Button>
+      ) : (
+        <Button
+          scale="sm"
+          variant="primary"
+          onClick={() => {
+            onPresentConnectModal();
+          }}
+        >
+          Connect
+        </Button>
+      )}
+    </div>
   );
 };
 
-export default ConnectWalletButton;
+export default React.memo(
+  ConnectButton,
+  (prevProps, nextProps) =>
+    prevProps.account === nextProps.account &&
+    prevProps.login === nextProps.login &&
+    prevProps.logout === nextProps.logout
+);

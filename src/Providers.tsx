@@ -5,17 +5,20 @@ import { ThemeContextProvider } from 'contexts/ThemeContext';
 import { LanguageProvider } from 'contexts/LocalizationContext';
 import { ModalProvider } from 'ui';
 import { getLibrary } from 'utils';
+import { NetworkContextProvider } from 'contexts/NetworkContext/NetworkContextProvider';
 
 const Providers: React.FC = ({ children }) => {
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
-      <HelmetProvider>
-        <ThemeContextProvider>
-          <LanguageProvider>
-            <ModalProvider>{children}</ModalProvider>
-          </LanguageProvider>
-        </ThemeContextProvider>
-      </HelmetProvider>
+      <NetworkContextProvider>
+        <HelmetProvider>
+          <ThemeContextProvider>
+            <LanguageProvider>
+              <ModalProvider>{children}</ModalProvider>
+            </LanguageProvider>
+          </ThemeContextProvider>
+        </HelmetProvider>
+      </NetworkContextProvider>
     </Web3ReactProvider>
   );
 };

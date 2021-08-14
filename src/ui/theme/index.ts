@@ -1,7 +1,7 @@
 import { ModalTheme } from 'ui/widgets/Modal/types';
 import { Colors, Breakpoints, MediaQueries, Spacing, Shadows, Radii, ZIndices, NavTheme } from './types';
 
-export interface MultivalentFaucetTheme {
+export interface OpenFaucetTheme {
   siteWidth: number;
   isDark: boolean;
   colors: Colors;

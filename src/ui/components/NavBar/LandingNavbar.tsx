@@ -3,6 +3,10 @@ import { ConnectButton } from 'components';
 import styled from 'styled-components';
 import { MENU_HEIGHT } from 'ui/config';
 import { Logo } from '../Logo';
+import { Flex } from '../Box';
+import NetworkButton from 'components/NetworkButton';
+import { useWeb3React } from '@web3-react/core';
+import { useAuth } from 'hooks';
 
 const Wrapper = styled.div`
   position: relative;
@@ -25,17 +29,24 @@ const StyledLandingNavBar = styled.nav`
   z-index: 20;
 `;
 
-const StyledConnectButton = styled(ConnectButton)`
+const WrapperActions = styled(Flex)`
+  align-items: center;
   position: absolute;
   right: 16px;
 `;
 
 const LandingNavbar = () => {
+  const { account } = useWeb3React();
+  console.log(account);
+  const { login, logout } = useAuth();
   return (
     <Wrapper>
       <StyledLandingNavBar>
         <Logo />
-        <StyledConnectButton>CONNECT</StyledConnectButton>
+        <WrapperActions>
+          <NetworkButton />
+          <ConnectButton account={account} login={login} logout={logout} />
+        </WrapperActions>
       </StyledLandingNavBar>
     </Wrapper>
   );

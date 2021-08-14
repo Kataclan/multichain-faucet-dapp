@@ -1,0 +1,20 @@
+import { BinanceIcon } from 'ui/components';
+import { NetworkConfig, Networks } from './types';
+
+const networks: NetworkConfig[] = [
+  {
+    chainId: 56,
+    title: 'Smart Chain',
+    icon: BinanceIcon,
+    networkId: Networks.BSC
+  },
+  {
+    chainId: 53,
+    title: 'Ganache5',
+    icon: BinanceIcon,
+    networkId: Networks.BSCTest
+  }
+];
+
+export default networks;
+export const networkLocalStorageKey = 'openfaucet_networkId';

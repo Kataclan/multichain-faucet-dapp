@@ -1,48 +1,34 @@
 import { InjectedConnector } from '@web3-react/injected-connector';
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector';
-import { BscConnector } from '@binance-chain/bsc-connector';
+import { BscConnector } from './bsc/bscConnector';
 import { ethers } from 'ethers';
-import { getPolygonNodeUrl } from './getRpcUrl';
-
-export const CONNECTOR_LOCALSTORAGE_KEY = 'multivalent_faucet_connector';
+import { getBscNodeUrl } from './getRpcUrl';
+import { ConnectorNames } from 'ui';
+import Web3 from 'web3';
 
 const POLLING_INTERVAL = 12000;
+const rpcUrl = getBscNodeUrl();
+const chainId = parseInt(process.env.REACT_APP_BSC_CHAIN_ID, 10);
+const testChainId = parseInt(process.env.REACT_APP_BSC_TEST__CHAIN_ID, 10);
 
-// const bscRpcUrl = getBscNodeUrl();
-const bscChainId = parseInt(process.env.REACT_APP_BSC_CHAIN_ID, 10);
+const injected = new InjectedConnector({ supportedChainIds: [56, 53] });
 
-const polygonRpcUrl = getPolygonNodeUrl();
-const polygonChainId = parseInt(process.env.REACT_APP_POLYGON_CHAIN_ID, 10);
-
-const injected = new InjectedConnector({ supportedChainIds: [polygonChainId] });
-
-const walletconnectPolygon = new WalletConnectConnector({
-  rpc: { [polygonChainId]: polygonRpcUrl },
-  // bridge: 'https://pancakeswap.bridge.walletconnect.org/',
+const walletconnect = new WalletConnectConnector({
+  rpc: { [chainId]: rpcUrl },
   qrcode: true,
   pollingInterval: POLLING_INTERVAL
 });
 
-// const walletconnectBsc = new WalletConnectConnector({
-//   rpc: { [bscChainId]: bscRpcUrl },
-//   // bridge: 'https://pancakeswap.bridge.walletconnect.org/',
-//   qrcode: true,
-//   pollingInterval: POLLING_INTERVAL
-// });
+const bscConnector = new BscConnector({ supportedChainIds: [chainId] });
 
-const bscConnector = new BscConnector({ supportedChainIds: [bscChainId] });
-
-export const connectorsByName = {
+export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
   injected: injected,
-  walletconnect: walletconnectPolygon,
-  // [ConnectorNames.WalletConnectBsc]: walletconnectBsc,
+  walletconnect: walletconnect,
   bsc: bscConnector
 };
 
-export const getLibrary = (provider): ethers.providers.Web3Provider => {
-  const library = new ethers.providers.Web3Provider(provider);
-  library.pollingInterval = POLLING_INTERVAL;
-  return library;
+export const getLibrary = (provider): Web3 => {
+  return provider;
 };
 
 /**
