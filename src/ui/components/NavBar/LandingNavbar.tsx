@@ -36,14 +36,15 @@ const WrapperActions = styled(Flex)`
 `;
 
 const LandingNavbar = () => {
-  const { account } = useWeb3React();
+  const { account, chainId } = useWeb3React();
   const { login, logout } = useAuth();
+  console.log('navbar chainId: ', chainId);
   return (
     <Wrapper>
       <StyledLandingNavBar>
         <Logo />
         <WrapperActions>
-          <NetworkButton />
+          <NetworkButton account={account} chainId={chainId} />
           <ConnectButton account={account} login={login} logout={logout} />
         </WrapperActions>
       </StyledLandingNavBar>

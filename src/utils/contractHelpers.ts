@@ -9,9 +9,9 @@ const getContract = (chainId: ChainId, abi: any, address: string, web3?: Web3) =
 };
 
 export const getFaucetContract = (chainId: ChainId, address: string, web3?: Web3) => {
-  return getContract(chainId || ChainId.ZeniTestnet, FaucetAbi, address, web3);
+  return getContract(chainId || ChainId.BscTestnet, FaucetAbi, address, web3);
 };
 
 export const getTokenContract = (chainId: ChainId, address: string, web3?: Web3) => {
-  return getContract(chainId || ChainId.ZeniTestnet, TokenAbi, address, web3);
+  return getContract(chainId || ChainId.BscTestnet, TokenAbi, address, web3);
 };

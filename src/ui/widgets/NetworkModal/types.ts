@@ -2,8 +2,11 @@ import { FC } from 'react';
 import { SvgProps } from '../../components/Svg/types';
 
 export enum Networks {
-  BSC = 'bsc',
-  BSCTest = 'bscTestnet'
+  ETH = 'eth',
+  Bsc = 'bsc',
+  BSCTest = 'bscTestnet',
+  Polygon = 'polygon',
+  Mumbai = 'mumbai'
 }
 
 export type NetworkSetup = (chainId: number) => void;

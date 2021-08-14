@@ -18,15 +18,15 @@ import { ChainId } from 'config';
 
 const useAuth = () => {
   const { t } = useTranslation();
-  const { activate, deactivate, library } = useWeb3React();
+  const { activate, deactivate } = useWeb3React();
 
   const login = useCallback(
-    (connectorID: ConnectorNames, chainId = ChainId.ZeniTestnet) => {
+    (connectorID: ConnectorNames, chainId = ChainId.BscTestnet) => {
       const connector = connectorsByName[connectorID];
       if (connector) {
         activate(connector, async (error: Error) => {
           if (error instanceof UnsupportedChainIdError) {
-            const hasSetup = await setupNetworkById(chainId, library);
+            const hasSetup = await setupNetworkById(chainId);
             if (hasSetup) {
               activate(connector);
             }
@@ -53,7 +53,7 @@ const useAuth = () => {
         console.error(t('Unable to find connector'), t('The connector config is wrong'));
       }
     },
-    [t, activate, library]
+    [t, activate]
   );
 
   const logout = useCallback(() => {

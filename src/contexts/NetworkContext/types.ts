@@ -1,8 +1,11 @@
 import { FC } from 'react';
 
 export enum Networks {
-  BSC = 'bsc',
-  BSCTest = 'bscTestnet'
+  ETH = 'eth',
+  Bsc = 'bsc',
+  BSCTest = 'bscTestnet',
+  Polygon = 'polygon',
+  Mumbai = 'mumbai'
 }
 
 export interface NetworkConfig {

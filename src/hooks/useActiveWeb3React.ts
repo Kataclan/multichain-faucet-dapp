@@ -4,6 +4,7 @@ import { getRpcProvider } from 'utils';
 import { Web3ReactContextInterface } from '@web3-react/core/dist/types';
 import { useWeb3React } from '@web3-react/core';
 import Web3 from 'web3';
+import { ChainId } from 'config';
 
 /**
  * Provides a web3 provider with or without user's signer
@@ -24,7 +25,7 @@ const useActiveWeb3React = (): Web3ReactContextInterface<Web3> => {
 
   return {
     library: provider,
-    chainId: chainId ?? parseInt(process.env.REACT_APP_BSC_CHAIN_ID, 10),
+    chainId: chainId ?? ChainId.Bsc,
     ...web3React
   };
 };

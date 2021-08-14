@@ -2,24 +2,26 @@ import { InjectedConnector } from '@web3-react/injected-connector';
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector';
 import { BscConnector } from './bsc/bscConnector';
 import { ethers } from 'ethers';
-import { getBscNodeUrl } from './getRpcUrl';
+import { getBscRpcUrl, getPolygonRpcUrl } from './getRpcUrl';
 import { ConnectorNames } from 'ui';
 import Web3 from 'web3';
+import { ChainId } from 'config';
 
 const POLLING_INTERVAL = 12000;
-const rpcUrl = getBscNodeUrl();
-const chainId = parseInt(process.env.REACT_APP_BSC_CHAIN_ID, 10);
-// const testChainId = parseInt(process.env.REACT_APP_BSC_TEST__CHAIN_ID, 10);
+const bscRpcUrl = getBscRpcUrl();
+const polygonRpcUrl = getPolygonRpcUrl();
 
-const injected = new InjectedConnector({ supportedChainIds: [56, 53] });
+const injected = new InjectedConnector({
+  supportedChainIds: [ChainId.Eth, ChainId.Bsc, ChainId.BscTestnet, ChainId.Polygon, ChainId.Mumbai]
+});
 
 const walletconnect = new WalletConnectConnector({
-  rpc: { [chainId]: rpcUrl },
+  rpc: { [ChainId.Bsc]: bscRpcUrl, [ChainId.Polygon]: polygonRpcUrl },
   qrcode: true,
   pollingInterval: POLLING_INTERVAL
 });
 
-const bscConnector = new BscConnector({ supportedChainIds: [chainId] });
+const bscConnector = new BscConnector({ supportedChainIds: [ChainId.Bsc] });
 
 export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
   injected: injected,

@@ -5,15 +5,19 @@ export type PageMeta = {
 };
 
 export enum ChainId {
+  Eth = 1,
   Bsc = 56,
-  BscTestnet = 79,
-  ZeniTestnet = 1337
+  BscTestnet = 97,
+  Polygon = 137,
+  Mumbai = 80001
 }
 
 export const ChainsById: { [chainId in ChainId]: string } = {
+  [ChainId.Eth]: 'eth',
   [ChainId.Bsc]: 'bsc',
   [ChainId.BscTestnet]: 'bscTestnet',
-  [ChainId.ZeniTestnet]: 'zeniTestnet'
+  [ChainId.Polygon]: 'polygon',
+  [ChainId.Mumbai]: 'mumbai'
 };
 
 export interface Address {

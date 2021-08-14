@@ -1,18 +1,38 @@
 import BinanceIcon from '../../components/Svg/Icons/Binance';
+import EthereumIcon from '../../components/Svg/Icons/Ethereum';
+import PolygonIcon from '../../components/Svg/Icons/Polygon';
 import { NetworkConfig, Networks } from './types';
 
 const networks: NetworkConfig[] = [
   {
+    chainId: 1,
+    title: 'Ethereum',
+    icon: EthereumIcon,
+    networkId: Networks.ETH
+  },
+  {
     chainId: 56,
     title: 'Smart Chain',
     icon: BinanceIcon,
-    networkId: Networks.BSC
+    networkId: Networks.Bsc
   },
   {
-    chainId: 53,
-    title: 'Zeni Test',
+    chainId: 97,
+    title: 'Smart Chain - Testnet',
     icon: BinanceIcon,
     networkId: Networks.BSCTest
+  },
+  {
+    chainId: 137,
+    title: 'Polygon Mainnet',
+    icon: PolygonIcon,
+    networkId: Networks.Polygon
+  },
+  {
+    chainId: 80001,
+    title: 'Mumbai Testnet',
+    icon: PolygonIcon,
+    networkId: Networks.Mumbai
   }
 ];
 

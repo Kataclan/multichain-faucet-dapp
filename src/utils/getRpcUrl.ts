@@ -1,17 +1,31 @@
 import sample from 'lodash/sample';
 // Array of available nodes to connect to
-export const bscNodes = [
-  process.env.REACT_APP_BSC_NODE_1,
-  process.env.REACT_APP_BSC_NODE_2,
-  process.env.REACT_APP_BSC_NODE_3
-];
+export const ethNodes = [process.env.REACT_APP_BSC_TEST_NODE];
 
-export const bscTestNodes = [process.env.REACT_APP_BSC_TEST_NODE_1];
+export const bscNodes = [process.env.REACT_APP_BSC_NODE];
 
-export const getBscTestNodeUrl = () => {
+export const bscTestNodes = [process.env.REACT_APP_BSC_TEST_NODE];
+
+export const polygonNodes = [process.env.REACT_APP_BSC_NODE];
+
+export const mumbaiNodes = [process.env.REACT_APP_BSC_NODE];
+
+export const getBscTestRpcUrl = () => {
   return sample(bscTestNodes);
 };
 
-export const getBscNodeUrl = () => {
+export const getEthereumRpcUrl = () => {
   return sample(bscNodes);
+};
+
+export const getBscRpcUrl = () => {
+  return sample(bscNodes);
+};
+
+export const getPolygonRpcUrl = () => {
+  return sample(polygonNodes);
+};
+
+export const getMumbaiRpcUrl = () => {
+  return sample(mumbaiNodes);
 };

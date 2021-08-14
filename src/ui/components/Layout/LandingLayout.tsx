@@ -29,7 +29,7 @@ const LandingLayoutBodyInner = styled.div`
 const LandingLayout: React.FC = ({ children }) => {
   return (
     <LandingLayoutRoot>
-      <LandingNavbar></LandingNavbar>
+      <LandingNavbar />
       <LandingLayoutBodyWrapper>
         <LandingLayoutBodyInner> {children || <Outlet />}</LandingLayoutBodyInner>
       </LandingLayoutBodyWrapper>
