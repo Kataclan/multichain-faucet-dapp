@@ -1,4 +1,3 @@
-import { ChainId } from 'config';
 import { useActiveWeb3React } from 'hooks';
 import React, { useState } from 'react';
 import { useEffect } from 'react';

@@ -4,7 +4,6 @@ import { Web3ReactContextInterface } from '@web3-react/core/dist/types';
 import { useWeb3React } from '@web3-react/core';
 import Web3 from 'web3';
 import { getRpcProvider } from 'utils';
-import { ChainId } from 'config';
 import useSetState from './useSetState';
 
 /**

@@ -3,7 +3,7 @@ import { useActiveWeb3React } from 'hooks';
 import { useFaucet } from 'contexts';
 import useRequestTokens, { RequestTokensProps } from 'hooks/useRequestTokens';
 import { useMemo } from 'react';
-import { Button, Text } from 'ui';
+import { Button } from 'ui';
 
 const RequestTokensAction: React.FC = () => {
   const { t } = useTranslation();
