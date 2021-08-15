@@ -1,7 +1,9 @@
 import React from 'react';
-import { Page } from 'components';
+import { Page, PageLoader } from 'components';
 import styled from 'styled-components';
 import SendToAddressForm from './components';
+import useFaucet from 'hooks/useFaucet';
+import NotSupported from './components/NotSupported';
 
 const LandingPage = styled(Page)`
   position: relative;
@@ -13,17 +15,21 @@ const LandingPage = styled(Page)`
 `;
 
 function Landing() {
-  const tokenSymbol = process.env.REACT_APP_FAUCET_TOKEN_SYMBOL;
+  const { isLoading, isSupported, tokenSymbol } = useFaucet();
 
   const handleSubmitAddressForm = (address: string) => {
     console.log(address);
   };
 
-  return (
-    <LandingPage>
+  const renderFormOrError = () => {
+    return isSupported ? (
       <SendToAddressForm tokenSymbol={tokenSymbol} onClickSend={handleSubmitAddressForm} />
-    </LandingPage>
-  );
+    ) : (
+      <NotSupported />
+    );
+  };
+
+  return <LandingPage>{isLoading ? <PageLoader /> : renderFormOrError()}</LandingPage>;
 }
 
 export default Landing;

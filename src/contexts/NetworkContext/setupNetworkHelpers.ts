@@ -12,19 +12,8 @@ export const setupEthereumNetwork = async () => {
   if (_provider) {
     try {
       await _provider.request({
-        method: 'wallet_addEthereumChain',
-        params: [
-          {
-            chainId: `0x${ChainId.Eth.toString(16)}`,
-            chainName: 'Ethereum Mainnet',
-            nativeCurrency: {
-              name: 'ETH',
-              symbol: 'ETH',
-              decimals: 18
-            },
-            blockExplorerUrls: [`https://etherscan.io`]
-          }
-        ]
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: `0x${ChainId.Eth.toString(16)}` }]
       });
       return true;
     } catch (error) {
