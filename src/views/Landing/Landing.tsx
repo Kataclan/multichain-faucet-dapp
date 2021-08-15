@@ -1,9 +1,6 @@
 import React from 'react';
-import { Container, Page } from 'components';
-import { useTranslation } from 'hooks';
+import { Page } from 'components';
 import styled from 'styled-components';
-import { Text } from 'ui';
-import useActiveWeb3React from 'hooks/useActiveWeb3React';
 import SendToAddressForm from './components';
 
 const LandingPage = styled(Page)`
@@ -15,17 +12,7 @@ const LandingPage = styled(Page)`
   height: 100%;
 `;
 
-const LandingPageContainer = styled(Container)`
-  display: flex;
-  min-height: 100%;
-  overflow: auto;
-  align-items: center;
-  justify-content: center;
-`;
-
 function Landing() {
-  const { t } = useTranslation();
-  const { account } = useActiveWeb3React();
   const tokenSymbol = process.env.REACT_APP_FAUCET_TOKEN_SYMBOL;
 
   const handleSubmitAddressForm = (address: string) => {
