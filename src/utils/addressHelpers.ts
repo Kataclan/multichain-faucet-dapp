@@ -13,6 +13,10 @@ export const getTokenAddress = (chainId: ChainId = ChainId.BscTestnet): string =
   return getNetworkAddress(chainId, contracts.token);
 };
 
+export const getCrowdsaleAddress = (chainId: ChainId = ChainId.BscTestnet): string => {
+  return getNetworkAddress(chainId, contracts.crowdsale);
+};
+
 export const isChecksumAddress = (address) => {
   // Check each case
   address = address.replace('0x', '');

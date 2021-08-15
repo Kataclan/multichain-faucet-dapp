@@ -1,12 +1,7 @@
+
 [
 	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_tokenInstance",
-				"type": "address"
-			}
-		],
+		"inputs": [],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
 	},
@@ -46,6 +41,37 @@
 		"anonymous": false,
 		"inputs": [
 			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "purchaser",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "beneficiary",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "value",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "TokensPurchased",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
 				"indexed": false,
 				"internalType": "address",
 				"name": "account",
@@ -56,83 +82,41 @@
 		"type": "event"
 	},
 	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "address",
-				"name": "token",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "address",
-				"name": "_operator",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "WithdrawTokensSentHere",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "_owner",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "previousRate",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "newRate",
-				"type": "uint256"
-			}
-		],
-		"name": "tokenAmountUpdated",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "_owner",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "previouswaitTime",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "newwaitTime",
-				"type": "uint256"
-			}
-		],
-		"name": "waitTimeUpdated",
-		"type": "event"
+		"inputs": [],
+		"name": "A1_PauseTheChain_Pause",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
 		"inputs": [],
-		"name": "Participants",
+		"name": "A2_PauseTheChain_Unpause",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "beneficiary",
+				"type": "address"
+			}
+		],
+		"name": "buyTokens",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "contributions",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -145,7 +129,7 @@
 	},
 	{
 		"inputs": [],
-		"name": "TokenAmounts",
+		"name": "investorHardCap",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -157,14 +141,21 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
+		"inputs": [],
+		"name": "investorMinCap",
+		"outputs": [
 			{
-				"internalType": "address",
-				"name": "_address",
-				"type": "address"
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
 			}
 		],
-		"name": "allowedToWithdraw",
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "isOwner",
 		"outputs": [
 			{
 				"internalType": "bool",
@@ -176,16 +167,16 @@
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "numParticipants",
-		"outputs": [
+		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "",
+				"name": "tokenAmount",
 				"type": "uint256"
 			}
 		],
-		"stateMutability": "view",
+		"name": "leftover",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -196,25 +187,6 @@
 				"internalType": "address",
 				"name": "",
 				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "participants",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "registered",
-				"type": "bool"
 			}
 		],
 		"stateMutability": "view",
@@ -241,20 +213,52 @@
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "requestTokens",
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "newRate",
+				"type": "uint256"
+			}
+		],
+		"name": "setRate",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "newHardCap",
+				"type": "uint256"
+			}
+		],
+		"name": "setinvestorHardCap",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "newMinCap",
+				"type": "uint256"
+			}
+		],
+		"name": "setinvestorMinCap",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
 		"inputs": [],
-		"name": "tokenAmount",
+		"name": "token",
 		"outputs": [
 			{
-				"internalType": "uint256",
+				"internalType": "contract IERC20",
 				"name": "",
-				"type": "uint256"
+				"type": "address"
 			}
 		],
 		"stateMutability": "view",
@@ -262,10 +266,10 @@
 	},
 	{
 		"inputs": [],
-		"name": "tokenInstance",
+		"name": "tokenAddress",
 		"outputs": [
 			{
-				"internalType": "contract ERC20",
+				"internalType": "contract IERC20",
 				"name": "",
 				"type": "address"
 			}
@@ -287,34 +291,8 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "uint16",
-				"name": "_tokenAmount",
-				"type": "uint16"
-			}
-		],
-		"name": "updateTokenAmount",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_waitTime",
-				"type": "uint256"
-			}
-		],
-		"name": "updatewaitTime",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"inputs": [],
-		"name": "waitTime",
+		"name": "viewCurrentCapMax",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -327,7 +305,46 @@
 	},
 	{
 		"inputs": [],
-		"name": "waitTimes",
+		"name": "viewCurrentCapMin",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "viewCurrentRate",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "viewDepositWallet",
+		"outputs": [
+			{
+				"internalType": "address payable",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "weiRaised",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -341,19 +358,23 @@
 	{
 		"inputs": [
 			{
-				"internalType": "contract ERC20",
+				"internalType": "contract IERC20",
 				"name": "token",
 				"type": "address"
 			},
 			{
 				"internalType": "uint256",
-				"name": "amount",
+				"name": "tokenAmount",
 				"type": "uint256"
 			}
 		],
-		"name": "withdrawTokensSentHere",
+		"name": "withdrawOtherTokensSentHere",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
+	},
+	{
+		"stateMutability": "payable",
+		"type": "receive"
 	}
 ]

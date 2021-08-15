@@ -15,3 +15,7 @@ export const getFaucetContract = (chainId: ChainId, address: string, web3?: Web3
 export const getTokenContract = (chainId: ChainId, address: string, web3?: Web3) => {
   return getContract(chainId || ChainId.BscTestnet, TokenAbi, address, web3);
 };
+
+export const getCrowdsaleContract = (chainId: ChainId, address: string, web3?: Web3) => {
+  return getContract(chainId || ChainId.BscTestnet, TokenAbi, address, web3);
+};
