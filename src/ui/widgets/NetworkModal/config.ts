@@ -12,13 +12,13 @@ const networks: NetworkConfig[] = [
   },
   {
     chainId: 56,
-    title: 'Smart Chain',
+    title: 'Binance Smart Chain',
     icon: BinanceIcon,
     networkId: Networks.Bsc
   },
   {
     chainId: 97,
-    title: 'Smart Chain - Testnet',
+    title: 'Binance Smart Chain - Testnet',
     icon: BinanceIcon,
     networkId: Networks.BSCTest
   },
