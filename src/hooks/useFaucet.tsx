@@ -26,7 +26,6 @@ export default function useFaucet() {
   // }, []);
 
   useEffect(() => {
-    console.log(chainId);
     init(chainId);
   }, [chainId, init]);
 
