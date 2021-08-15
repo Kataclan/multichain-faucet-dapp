@@ -2,7 +2,7 @@ import React from 'react';
 import { Page, PageLoader } from 'components';
 import styled from 'styled-components';
 import SendToAddressForm from './components';
-import useFaucet from 'hooks/useFaucet';
+import { useFaucet } from 'contexts';
 import NotSupported from './components/NotSupported';
 
 const LandingPage = styled(Page)`

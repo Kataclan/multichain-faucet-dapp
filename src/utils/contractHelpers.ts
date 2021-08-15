@@ -5,6 +5,7 @@ import { AbiItem } from 'web3-utils';
 
 const getContract = (chainId: ChainId, abi: any, address: string, web3?: Web3) => {
   const _web3 = web3 ?? new Web3(getRpcProvider(chainId));
+
   return new _web3.eth.Contract(abi as unknown as AbiItem, address);
 };
 

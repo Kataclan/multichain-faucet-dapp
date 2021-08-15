@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonProps, IconButton } from 'ui';
+import { ButtonProps, IconButton, Text } from 'ui';
 import { useNetworkModal } from 'ui/widgets/NetworkModal';
 import { NetworkConfig } from 'contexts/NetworkContext/types';
 import { ChainId } from 'config';
@@ -16,8 +16,17 @@ const NetworkButton: React.FC<NetworkButtonProps> = ({ chainId, networkConfig, o
   const Icon = getChainIconElement(chainId ?? null);
 
   return (
-    <IconButton variant="secondary" scale="md" onClick={onPresentNetworkModal} disabled={!chainId} {...props}>
-      {Icon ? <Icon height="32px" width="32px" /> : '-'}
+    <IconButton width="auto" variant="secondary" onClick={onPresentNetworkModal} disabled={!chainId} {...props}>
+      {Icon ? (
+        <>
+          <Icon height="32px" width="32px" />
+          <Text fontSize="12px" pt={'2px'} pr={'12px'}>
+            {networkConfig.title}
+          </Text>
+        </>
+      ) : (
+        '-'
+      )}
     </IconButton>
   );
 };

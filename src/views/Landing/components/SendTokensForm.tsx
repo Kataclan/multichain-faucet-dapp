@@ -4,6 +4,7 @@ import { useSetState, useTranslation } from 'hooks';
 import { useMemo } from 'react';
 import styled from 'styled-components';
 import { Flex, Heading, Text } from 'ui';
+import RequestTokensAction from './actions/RequestTokensAction';
 import SendTokensAction from './actions/SendTokensAction';
 import CustomAddressView from './CustomAddressView';
 import UserAddressView from './UserAddressView';
@@ -88,6 +89,16 @@ const SendTokensForm: React.FC<SendTokensFormProps> = ({ tokenSymbol, onClickSen
     }
   }, [formState.selectedTab]);
 
+  const action = useMemo(() => {
+    switch (formState.selectedTab) {
+      case AddressInputTabs.User:
+        return <RequestTokensAction />;
+      case AddressInputTabs.Custom:
+      default:
+        return <SendTokensAction />;
+    }
+  }, [formState.selectedTab]);
+
   return (
     <SendTokensCard>
       <SendTokensCardTitleWrapper p={4}>
@@ -99,7 +110,7 @@ const SendTokensForm: React.FC<SendTokensFormProps> = ({ tokenSymbol, onClickSen
       </TabsWrapper>
       <SendTokensCardContentWrapper>{view}</SendTokensCardContentWrapper>
       <SendTokensCardActionsWrapper pt={2} pb={2}>
-        <SendTokensAction />
+        {action}
       </SendTokensCardActionsWrapper>
     </SendTokensCard>
   );

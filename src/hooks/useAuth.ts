@@ -14,10 +14,11 @@ import { connectorLocalStorageKey, ConnectorNames } from 'ui';
 import { connectorsByName } from 'utils';
 import { networkLocalStorageKey } from 'ui/widgets/NetworkModal';
 import { setupNetworkById } from 'contexts/NetworkContext/setupNetworkHelpers';
+import useActiveWeb3React from './useActiveWeb3React';
 
 const useAuth = () => {
   const { t } = useTranslation();
-  const { activate, deactivate } = useWeb3React();
+  const { activate, deactivate } = useActiveWeb3React();
 
   const login = useCallback(
     // It uses the connector ID name to retrieve the connector from web3React config, and uses
@@ -27,6 +28,7 @@ const useAuth = () => {
       if (connector) {
         activate(connector, async (error: Error) => {
           if (error instanceof UnsupportedChainIdError) {
+            console.log('HOLA');
             const hasSetup = await setupNetworkById(chainId);
             if (hasSetup) {
               activate(connector);
@@ -64,8 +66,7 @@ const useAuth = () => {
       connectorsByName.walletconnect.close();
       connectorsByName.walletconnect.walletConnectProvider = null;
     }
-
-    window.localStorage.removeItem(networkLocalStorageKey);
+    window.localStorage.removeItem(connectorLocalStorageKey);
   }, [deactivate]);
 
   return { login, logout };

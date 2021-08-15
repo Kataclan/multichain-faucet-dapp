@@ -3,7 +3,7 @@ import NetworkButton from 'components/NetworkButton';
 import { ChainId } from 'config';
 import { findNetworkByChainId, setupNetworkById } from 'contexts/NetworkContext/setupNetworkHelpers';
 import { useTranslation } from 'hooks';
-import useActiveWeb3React from 'hooks/useActiveWeb3React';
+import { useActiveWeb3React } from 'hooks';
 import { Outlet } from 'react-router';
 import styled from 'styled-components';
 import { Flex, LandingNavbar, Text } from 'ui';

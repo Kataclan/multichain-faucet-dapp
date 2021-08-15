@@ -1,7 +1,8 @@
-import { useWeb3React } from '@web3-react/core';
+import { ChainId } from 'config';
+import { useActiveWeb3React } from 'hooks';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import networks from 'ui/widgets/NetworkModal/config';
+import networks, { networkLocalStorageKey } from 'ui/widgets/NetworkModal/config';
 import { NetworkContextApi, NetworkState } from './types';
 
 const initialState: NetworkState = {
@@ -14,15 +15,14 @@ const NetworkContext = React.createContext<NetworkContextApi>({
 });
 
 const NetworkContextProvider: React.FC<{}> = ({ children }) => {
+  const { account, chainId } = useActiveWeb3React();
   const [network, setNetworkConfig] = useState<NetworkState>(initialState);
-  const { account, chainId } = useWeb3React();
 
   useEffect(() => {
-    if (account) {
-      const networkConfig = networks.find((n) => n.chainId === chainId);
-      if (networkConfig) {
-        setNetworkConfig({ network: networkConfig, isLoaded: true });
-      }
+    const networkConfig = networks.find((n) => n.chainId === chainId);
+    if (networkConfig) {
+      setNetworkConfig({ network: networkConfig, isLoaded: true });
+      window.localStorage.setItem(networkLocalStorageKey, chainId?.toString());
     }
   }, [account, chainId]);
 

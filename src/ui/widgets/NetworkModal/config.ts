@@ -24,13 +24,13 @@ const networks: NetworkConfig[] = [
   },
   {
     chainId: 137,
-    title: 'Polygon Mainnet',
+    title: 'Polygon',
     icon: PolygonIcon,
     networkId: Networks.Polygon
   },
   {
     chainId: 80001,
-    title: 'Mumbai Testnet',
+    title: 'Mumbai',
     icon: PolygonIcon,
     networkId: Networks.Mumbai
   }

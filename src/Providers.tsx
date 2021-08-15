@@ -6,6 +6,7 @@ import { LanguageProvider } from 'contexts/LocalizationContext';
 import { ModalProvider } from 'ui';
 import { getLibrary } from 'utils';
 import { NetworkContextProvider } from 'contexts/NetworkContext/NetworkContextProvider';
+import { FaucetContextProvider } from 'contexts/FaucetContext';
 
 const Providers: React.FC = ({ children }) => {
   return (
@@ -14,7 +15,9 @@ const Providers: React.FC = ({ children }) => {
         <HelmetProvider>
           <ThemeContextProvider>
             <LanguageProvider>
-              <ModalProvider>{children}</ModalProvider>
+              <ModalProvider>
+                <FaucetContextProvider>{children}</FaucetContextProvider>
+              </ModalProvider>
             </LanguageProvider>
           </ThemeContextProvider>
         </HelmetProvider>

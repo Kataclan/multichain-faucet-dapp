@@ -1,5 +1,5 @@
 import { useAuth } from 'hooks';
-import useActiveWeb3React from 'hooks/useActiveWeb3React';
+import { useActiveWeb3React } from 'hooks';
 import React from 'react';
 import { Button, useWalletModal } from 'ui';
 

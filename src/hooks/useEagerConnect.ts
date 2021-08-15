@@ -30,7 +30,9 @@ const useEagerConnect = () => {
         return;
       }
 
-      login(connectorId, networkName);
+      login(connectorId);
+    } else {
+      login(ConnectorNames.Injected);
     }
   }, [login]);
 };
