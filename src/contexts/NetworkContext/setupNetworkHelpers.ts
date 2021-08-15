@@ -113,7 +113,7 @@ export const setupPolygonNetwork = async () => {
               symbol: 'MATIC',
               decimals: 18
             },
-            rpcUrls: mumbaiNodes,
+            rpcUrls: polygonNodes,
             blockExplorerUrls: [`https://polygonscan.com/`]
           }
         ]

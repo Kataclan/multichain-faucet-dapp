@@ -1,17 +1,25 @@
 import React from 'react';
-import { Button } from 'ui';
+import { ButtonProps, IconButton } from 'ui';
 import { useNetworkModal } from 'ui/widgets/NetworkModal';
-import { findNetworkByChainId, setupNetworkById } from 'contexts/NetworkContext/setupNetworkHelpers';
+import { NetworkConfig } from 'contexts/NetworkContext/types';
+import { ChainId } from 'config';
+import { getChainIconElement } from 'utils';
 
-const NetworkButton = (props) => {
-  const { onPresentNetworkModal } = useNetworkModal(setupNetworkById);
-  const networkconfig = findNetworkByChainId(props.chainId);
+interface NetworkButtonProps extends ButtonProps {
+  chainId: number;
+  onSelectNetwork: (chainId: ChainId) => void;
+  networkConfig?: NetworkConfig;
+}
 
-  return props.account ? (
-    <Button variant="secondary" scale="sm" onClick={onPresentNetworkModal} {...props}>
-      {networkconfig ? networkconfig.title : props.chainId}
-    </Button>
-  ) : null;
+const NetworkButton: React.FC<NetworkButtonProps> = ({ chainId, networkConfig, onSelectNetwork, ...props }) => {
+  const { onPresentNetworkModal } = useNetworkModal(onSelectNetwork);
+  const Icon = getChainIconElement(chainId ?? null);
+
+  return (
+    <IconButton variant="secondary" scale="md" onClick={onPresentNetworkModal} disabled={!chainId} {...props}>
+      {Icon ? <Icon height="32px" width="32px" /> : '-'}
+    </IconButton>
+  );
 };
 
 export default NetworkButton;

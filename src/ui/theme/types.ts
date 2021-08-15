@@ -15,10 +15,16 @@ export type Radii = {
   small: string;
   default: string;
   circle: string;
+  medium: string;
 };
 
 export type Shadows = {
   button: string;
+  card: string;
+  warning: string;
+  focus: string;
+  inset: string;
+  success: string;
 };
 
 export type Gradients = {};

@@ -1,6 +1,6 @@
 import sample from 'lodash/sample';
 // Array of available nodes to connect to
-export const ethNodes = [process.env.REACT_APP_BSC_TEST_NODE];
+export const ethNodes = [process.env.REACT_APP_ETH_NODE];
 
 export const bscNodes = [process.env.REACT_APP_BSC_NODE];
 
@@ -15,7 +15,7 @@ export const getBscTestRpcUrl = () => {
 };
 
 export const getEthereumRpcUrl = () => {
-  return sample(bscNodes);
+  return sample(ethNodes);
 };
 
 export const getBscRpcUrl = () => {

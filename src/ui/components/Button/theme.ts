@@ -28,11 +28,11 @@ export const styleVariants = {
   [variants.SECONDARY]: {
     backgroundColor: 'transparent',
     border: '2px solid',
-    borderColor: 'primary',
+    borderColor: 'outline',
     boxShadow: 'none',
     color: 'primary',
     ':disabled': {
-      backgroundColor: 'transparent'
+      backgroundColor: 'textSubtle'
     }
   },
   [variants.TERTIARY]: {

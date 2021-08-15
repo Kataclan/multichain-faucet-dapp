@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useMemo } from 'react';
 import { getRpcProvider } from 'utils';
 // eslint-disable-next-line import/no-unresolved
 import { Web3ReactContextInterface } from '@web3-react/core/dist/types';
@@ -13,15 +13,16 @@ import { ChainId } from 'config';
 const useActiveWeb3React = (): Web3ReactContextInterface<Web3> => {
   const { library, chainId, ...web3React } = useWeb3React();
   const refEth = useRef(library);
+  const defaultChainRpcProvider = useMemo(() => getRpcProvider(chainId), [chainId]);
 
-  const [provider, setprovider] = useState(library || getRpcProvider(chainId));
+  const [provider, setprovider] = useState(library || defaultChainRpcProvider);
 
   useEffect(() => {
     if (library !== refEth.current) {
-      setprovider(library || getRpcProvider(chainId));
+      setprovider(library || defaultChainRpcProvider);
       refEth.current = library;
     }
-  }, [library, chainId]);
+  }, [library, defaultChainRpcProvider]);
 
   return {
     library: provider,

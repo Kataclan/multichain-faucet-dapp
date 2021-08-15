@@ -1,46 +1,24 @@
+import { useAuth } from 'hooks';
+import useActiveWeb3React from 'hooks/useActiveWeb3React';
 import React from 'react';
-import { Button, Login, useWalletModal } from 'ui';
+import { Button, useWalletModal } from 'ui';
 
-interface Props {
-  account?: string;
-  login: Login;
-  logout: () => void;
-}
+const ConnectButton = () => {
+  const { account } = useActiveWeb3React();
+  const { login, logout } = useAuth();
+  const { onPresentConnectModal } = useWalletModal(login, logout, account);
 
-const ConnectButton: React.FC<Props> = ({ account, login, logout }) => {
-  const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(login, logout, account);
-  const accountEllipsis = account ? `${account.substring(0, 4)}...${account.substring(account.length - 4)}` : null;
   return (
-    <div>
-      {account ? (
-        <Button
-          scale="sm"
-          variant="primary"
-          onClick={() => {
-            onPresentAccountModal();
-          }}
-        >
-          {accountEllipsis}
-        </Button>
-      ) : (
-        <Button
-          scale="sm"
-          variant="primary"
-          onClick={() => {
-            onPresentConnectModal();
-          }}
-        >
-          Connect
-        </Button>
-      )}
-    </div>
+    <Button
+      scale="sm"
+      variant="primary"
+      onClick={() => {
+        onPresentConnectModal();
+      }}
+    >
+      Connect
+    </Button>
   );
 };
 
-export default React.memo(
-  ConnectButton,
-  (prevProps, nextProps) =>
-    prevProps.account === nextProps.account &&
-    prevProps.login === nextProps.login &&
-    prevProps.logout === nextProps.logout
-);
+export default ConnectButton;

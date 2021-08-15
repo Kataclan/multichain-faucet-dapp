@@ -14,14 +14,15 @@ import { connectorLocalStorageKey, ConnectorNames } from 'ui';
 import { connectorsByName } from 'utils';
 import { networkLocalStorageKey } from 'ui/widgets/NetworkModal';
 import { setupNetworkById } from 'contexts/NetworkContext/setupNetworkHelpers';
-import { ChainId } from 'config';
 
 const useAuth = () => {
   const { t } = useTranslation();
   const { activate, deactivate } = useWeb3React();
 
   const login = useCallback(
-    (connectorID: ConnectorNames, chainId = ChainId.BscTestnet) => {
+    // It uses the connector ID name to retrieve the connector from web3React config, and uses
+    // default chain id env variable as default chain to connect
+    (connectorID: ConnectorNames, chainId = parseInt(process.env.REACT_APP_DEFAULT_CHAIN_ID, 10)) => {
       const connector = connectorsByName[connectorID];
       if (connector) {
         activate(connector, async (error: Error) => {

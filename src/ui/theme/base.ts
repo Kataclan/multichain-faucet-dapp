@@ -20,13 +20,19 @@ const mediaQueries: MediaQueries = {
 };
 
 export const shadows: Shadows = {
-  button: '0px 5px 36.6px 6.5px rgba(255, 0, 185, 0.67);'
+  button: '0px 5px 36.6px 6.5px rgba(0, 201, 136, 0.67)',
+  card: '0 5.40728px 10.8146px rgba(0,0,0,.3)',
+  success: '0px 0px 0px 1px #31D0AA, 0px 0px 0px 4px rgba(49, 208, 170, 0.2)',
+  focus: '0px 0px 0px 1px #00ad6e, 0px 0px 0px 4px rgba(0, 137, 110, 0.6)',
+  warning: '0px 0px 0px 1px #ED4B9E, 0px 0px 0px 4px rgba(237, 75, 158, 0.2)',
+  inset: 'inset 0px 2px 2px -1px rgba(74, 74, 104, 0.1)'
 };
 
 const spacing: Spacing = [0, 4, 8, 16, 24, 32, 48, 64];
 
 const radii = {
   small: '4px',
+  medium: '10px',
   default: '16px',
   circle: '50%'
 };
