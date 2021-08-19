@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import useAuth from 'hooks/useAuth';
 import { connectorLocalStorageKey, ConnectorNames } from 'ui';
 import { networkLocalStorageKey, NetworkNames } from 'config';

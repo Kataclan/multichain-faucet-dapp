@@ -16,6 +16,7 @@ const FaucetViewWrapper = styled(Flex)`
   align-items: center;
   justify-content: center;
   background-color: ${({ theme }) => theme.colors.foreground};
+  min-heigth: 200px;
 `;
 
 const ContentWrapper = styled(Flex)`
@@ -51,10 +52,12 @@ const TokenAction = styled(Flex)`
 `;
 
 const TokenInfoLabel = styled(Text)``;
+
 const TokenInfoValue = styled(Text)`
   flex-direction: row;
   color: ${({ theme }) => theme.colors.primary};
   display: flex;
+  align-items: center;
 `;
 
 const TxLoaderWrapper = styled(Flex)`
@@ -100,7 +103,11 @@ const FaucetView = () => {
               <TokenInfo mb={4}>
                 <TokenInfoLabel>{t('You receive')}</TokenInfoLabel>
                 <TokenInfoValue>
-                  {tokenAmount} {process.env.REACT_APP_FAUCET_TOKEN_SYMBOL}
+                  {loadingTokenAmount ? (
+                    <PuffLoader size={12} color={theme.colors.primary} />
+                  ) : (
+                    `${tokenAmount} ${process.env.REACT_APP_FAUCET_TOKEN_SYMBOL}`
+                  )}{' '}
                 </TokenInfoValue>
               </TokenInfo>
               <TokenAction>
