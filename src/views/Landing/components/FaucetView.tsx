@@ -8,7 +8,7 @@ import { PuffLoader } from 'react-spinners';
 import RequestTokensAction from './actions/RequestTokensAction';
 import { useMemo } from 'react';
 import { getHiddenAccountStr } from 'utils';
-import useAllowedToWithdraw from 'hooks/useAllowedToWithdraw';
+import useAllowedToWithdraw from 'hooks/useAlreadyWithdrawn';
 
 const FaucetViewWrapper = styled(Flex)`
   flex-direction: column;

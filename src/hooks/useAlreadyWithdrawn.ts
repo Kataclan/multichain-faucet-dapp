@@ -3,7 +3,7 @@ import useActiveWeb3React from './useActiveWeb3React';
 import useAsync from './useAsync';
 import { useFaucetContract } from './useContract';
 
-const useAllowedToWithdraw = () => {
+const useAlreadyWithdrawn = () => {
   const { account } = useActiveWeb3React();
 
   const faucetContract = useFaucetContract();
@@ -15,7 +15,7 @@ const useAllowedToWithdraw = () => {
     data,
     error
   } = useAsync<any, boolean>({
-    asyncFunc: faucetContract.methods.allowedToWithdraw(account).call,
+    asyncFunc: faucetContract.methods.alreadyWithdrew(account).call,
     asyncFuncParams: {},
     immediate: false,
     initialData: false
@@ -31,4 +31,4 @@ const useAllowedToWithdraw = () => {
   return { allowedToWithdraw: data, loading, error };
 };
 
-export default useAllowedToWithdraw;
+export default useAlreadyWithdrawn;
