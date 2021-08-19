@@ -22,12 +22,10 @@ const RequestTokensAction: React.FC<{
     onRequestTokens();
   };
 
-  return account ? (
+  return (
     <Button variant="secondary" disabled={!account || !allowed || disabled} onClick={() => handleSendTokens()}>
       {allowed ? `${t('WITHDRAW')} ${process.env.REACT_APP_FAUCET_TOKEN_SYMBOL}` : t('Not allowed')}
     </Button>
-  ) : (
-    <div style={{ height: 48 }} />
   );
 };
 

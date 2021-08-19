@@ -7,7 +7,6 @@ import FaucetView from './FaucetView';
 interface SendTokensFormProps {
   tokenSymbol: string;
   error?: string;
-  onClickSend: (address: string) => void;
 }
 
 const SendTokensCard = styled(Flex)`
@@ -31,11 +30,6 @@ const SendTokensCardTitleWrapper = styled(Flex)`
   background-color: ${({ theme }) => theme.colors.background};
 `;
 
-// const TabsWrapper = styled(Flex)`
-//   width: 100%;
-//   justify-content: center;
-// `;
-
 const SendTokensCardContentWrapper = styled(Flex)`
   flex-direction: column;
   width: 100%;
@@ -52,7 +46,7 @@ const SendTokensCardActionsWrapper = styled(Flex)`
   border-bottom-left-radius: ${({ theme }) => theme.radii.medium};
 `;
 
-const SendTokensForm: React.FC<SendTokensFormProps> = ({ tokenSymbol, onClickSend }) => {
+const SendTokensForm: React.FC<SendTokensFormProps> = ({ tokenSymbol }) => {
   const { t } = useTranslation();
 
   return (

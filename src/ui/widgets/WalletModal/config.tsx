@@ -46,4 +46,5 @@ const connectors: Config[] = [
 ];
 
 export default connectors;
+export const previousConnectionLocalstorageKey = 'openfaucet_previous_connection';
 export const connectorLocalStorageKey = 'openfaucet_connectorId';

@@ -1,5 +1,5 @@
 import { GlobalStyle, PageLoader, SuspenseWithChunkError } from 'components';
-import { useEagerConnect } from 'hooks';
+import { useAuth, useEagerConnect } from 'hooks';
 import React, { lazy } from 'react';
 import { Navigate, BrowserRouter as Router, useRoutes } from 'react-router-dom';
 import { LandingLayout } from 'components';
@@ -25,12 +25,13 @@ const App: React.FC = (): JSX.Element => {
 
 const AppWrapper: React.FC = (): JSX.Element => {
   useEagerConnect();
+  const { initialized } = useAuth();
   return (
     <Router>
       <ResetCSS />
       <GlobalStyle />
       <SuspenseWithChunkError fallback={<PageLoader />}>
-        <App />
+        {initialized ? <App /> : <PageLoader />}
       </SuspenseWithChunkError>
     </Router>
   );

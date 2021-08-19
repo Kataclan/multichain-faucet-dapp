@@ -18,7 +18,7 @@ const useAllowedToWithdraw = () => {
     asyncFunc: faucetContract.methods.allowedToWithdraw(account).call,
     asyncFuncParams: {},
     immediate: false,
-    initialData: '0'
+    initialData: false
   });
 
   useEffect(() => {

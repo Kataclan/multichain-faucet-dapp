@@ -69,8 +69,9 @@ const FaucetView = () => {
   const theme = useTheme();
   const { account } = useActiveWeb3React();
   const { isPendingTx, startTx, stopTx } = useFaucet();
-  const { tokenAmount } = useTokenAmount();
-  const { allowedToWithdraw } = useAllowedToWithdraw();
+  const { tokenAmount, loading: loadingTokenAmount } = useTokenAmount();
+  const { allowedToWithdraw, loading: loadingAllowedToWithDraw } = useAllowedToWithdraw();
+
   const accountHidden = useMemo(() => getHiddenAccountStr(account), [account]);
 
   return (
@@ -103,14 +104,18 @@ const FaucetView = () => {
                 </TokenInfoValue>
               </TokenInfo>
               <TokenAction>
-                <RequestTokensAction
-                  account={account}
-                  allowed={allowedToWithdraw}
-                  disabled={isPendingTx}
-                  onStart={startTx}
-                  onSuccess={stopTx}
-                  onError={stopTx}
-                />
+                {loadingAllowedToWithDraw ? (
+                  <PuffLoader size={24} color={theme.colors.primary} />
+                ) : (
+                  <RequestTokensAction
+                    account={account}
+                    allowed={allowedToWithdraw}
+                    disabled={isPendingTx || loadingAllowedToWithDraw}
+                    onStart={startTx}
+                    onSuccess={stopTx}
+                    onError={stopTx}
+                  />
+                )}
               </TokenAction>
             </TokenInfoWrapper>
           )}

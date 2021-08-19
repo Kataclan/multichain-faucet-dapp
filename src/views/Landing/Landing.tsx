@@ -17,13 +17,9 @@ const LandingPage = styled(Page)`
 function Landing() {
   const { isLoading, isSupported, tokenSymbol } = useFaucet();
 
-  const handleSubmitAddressForm = (address: string) => {
-    console.log(address);
-  };
-
   const renderFormOrError = () => {
     return isSupported ? (
-      <SendToAddressForm tokenSymbol={tokenSymbol} onClickSend={handleSubmitAddressForm} />
+      <SendToAddressForm tokenSymbol={tokenSymbol} />
     ) : (
       <NotSupported />
     );

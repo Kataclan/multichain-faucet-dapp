@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useAuth from 'hooks/useAuth';
 import { connectorLocalStorageKey, ConnectorNames } from 'ui';
 import { networkLocalStorageKey, NetworkNames } from 'config';
@@ -29,7 +29,6 @@ const useEagerConnect = () => {
         _binanceChainListener().then(() => login(connectorId));
         return;
       }
-
       login(connectorId, networkName);
     } else {
       login(ConnectorNames.Injected);

@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { UnsupportedChainIdError } from '@web3-react/core';
 import { NoBscProviderError } from '@binance-chain/bsc-connector';
 import {
@@ -14,10 +14,14 @@ import { connectorLocalStorageKey, ConnectorNames } from 'ui';
 import useTranslation from './useTranslation';
 import { connectorsByName, setupNetworkById } from 'utils';
 import useActiveWeb3React from './useActiveWeb3React';
+import { previousConnectionLocalstorageKey } from 'ui/widgets/WalletModal/config';
 
 const useAuth = () => {
   const { t } = useTranslation();
-  const { activate, deactivate } = useActiveWeb3React();
+  const { account, activate, deactivate } = useActiveWeb3React();
+
+  const [initialized, setInitialized] = useState(false);
+  const [error, setError] = useState('');
 
   const login = useCallback(
     // It uses the connector ID name to retrieve the connector from web3React config, and uses
@@ -30,12 +34,13 @@ const useAuth = () => {
             const hasSetup = await setupNetworkById(chainId);
             if (hasSetup) {
               activate(connector);
+              setInitialized(true);
             }
           } else {
             window.localStorage.removeItem(connectorLocalStorageKey);
             window.localStorage.removeItem(networkLocalStorageKey);
             if (error instanceof NoEthereumProviderError || error instanceof NoBscProviderError) {
-              console.error(t('Provider Error'), t('No provider was found'));
+              setError(`${t('Provider Error')}:  ${t('No provider was found')}`);
             } else if (
               error instanceof UserRejectedRequestErrorInjected ||
               error instanceof UserRejectedRequestErrorWalletConnect
@@ -44,14 +49,16 @@ const useAuth = () => {
                 const walletConnector = connector as WalletConnectConnector;
                 walletConnector.walletConnectProvider = null;
               }
-              console.error(t('Authorization Error'), t('Please authorize to access your account'));
+              setError(`${t('Authorize error')}:  ${t('Please authorize to be able to show your account')}`);
             } else {
-              console.error(error.name, error.message);
+              setError(`${error.name}:  ${error.message}`);
             }
           }
         });
       } else {
-        console.error(t('Unable to find connector'), t('The connector config is wrong'));
+        setError(`${t('Unable to find connector')}:  ${t('The connector config is wrong')}`);
+        window.localStorage.removeItem(previousConnectionLocalstorageKey);
+        setInitialized(false);
       }
     },
     [t, activate]
@@ -65,9 +72,17 @@ const useAuth = () => {
       connectorsByName.walletconnect.walletConnectProvider = null;
     }
     window.localStorage.removeItem(connectorLocalStorageKey);
+    window.localStorage.removeItem(previousConnectionLocalstorageKey);
   }, [deactivate]);
 
-  return { login, logout };
+  useEffect(() => {
+    // This avoids the initial flickering when account is not present yet
+    if (window.localStorage.getItem(previousConnectionLocalstorageKey) === 'connected' && account) {
+      setInitialized(true);
+    }
+  }, [account]);
+
+  return { login, logout, initialized, error };
 };
 
 export default useAuth;
