@@ -1,6 +1,5 @@
-import { useAuth } from 'hooks';
+import { useAuth } from 'contexts';
 import { useActiveWeb3React } from 'hooks';
-import React from 'react';
 import { Button, useWalletModal } from 'ui';
 
 const ConnectButton = () => {
@@ -11,7 +10,7 @@ const ConnectButton = () => {
   return (
     <Button
       scale="sm"
-      variant="primary"
+      variant="secondary"
       onClick={() => {
         onPresentConnectModal();
       }}

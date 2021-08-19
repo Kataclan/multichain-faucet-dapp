@@ -5,23 +5,23 @@ import { ThemeContextProvider } from 'contexts/ThemeContext';
 import { LanguageProvider } from 'contexts/LocalizationContext';
 import { ModalProvider } from 'ui';
 import { getLibrary } from 'utils';
-import { NetworkContextProvider } from 'contexts/NetworkContext/NetworkContextProvider';
 import { FaucetContextProvider } from 'contexts/FaucetContext';
+import { AuthContextProvider } from 'contexts/AuthContext';
 
 const Providers: React.FC = ({ children }) => {
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
-      <NetworkContextProvider>
-        <HelmetProvider>
-          <ThemeContextProvider>
-            <LanguageProvider>
-              <ModalProvider>
+      <HelmetProvider>
+        <ThemeContextProvider>
+          <LanguageProvider>
+            <ModalProvider>
+              <AuthContextProvider>
                 <FaucetContextProvider>{children}</FaucetContextProvider>
-              </ModalProvider>
-            </LanguageProvider>
-          </ThemeContextProvider>
-        </HelmetProvider>
-      </NetworkContextProvider>
+              </AuthContextProvider>
+            </ModalProvider>
+          </LanguageProvider>
+        </ThemeContextProvider>
+      </HelmetProvider>
     </Web3ReactProvider>
   );
 };

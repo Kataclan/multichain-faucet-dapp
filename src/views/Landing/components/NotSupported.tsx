@@ -1,4 +1,3 @@
-import useNetwork from 'contexts/NetworkContext/useNetwork';
 import styled from 'styled-components';
 import { useTranslation } from 'hooks';
 import { Flex, Heading, Text } from 'ui';
@@ -17,12 +16,11 @@ const NotSupportedWrapper = styled(Flex)`
 
 const NotSupported = () => {
   const { t } = useTranslation();
-  const { network } = useNetwork();
 
   return (
     <NotSupportedWrapper p={4}>
       <Heading color="warning" scale="md" mb={4}>
-        {t(`This faucet is not supported in ${network?.displayName}`)}
+        {t(`This faucet is not supported in this chain`)}
       </Heading>
       <Text>{t('Connect to another chain through the menu button or directly in your wallet')}</Text>
     </NotSupportedWrapper>

@@ -16,19 +16,20 @@ const FaucetViewWrapper = styled(Flex)`
   align-items: center;
   justify-content: center;
   background-color: ${({ theme }) => theme.colors.foreground};
-  min-heigth: 200px;
 `;
 
 const ContentWrapper = styled(Flex)`
   width: 100%;
   justify-content: center;
   flex-direction: column;
+  min-height: 200px;
 `;
 
 const AddressInputLabel = styled(Flex)`
   width: 100%;
   justify-content: center;
   flex-direction: column;
+  text-align: center;
 `;
 
 const TokenInfoWrapper = styled(Flex)`
@@ -88,8 +89,10 @@ const FaucetView = () => {
         <ContentWrapper>
           {!account ? (
             <AddressInputLabel mb={2}>
-              <Text mb={2}>{t(`Connect your account to directly send tokens to your wallet`)}</Text>
-              <ConnectButton />
+              <Text mb={4}>{t(`Connect your account to directly send tokens to your wallet`)}</Text>
+              <TokenAction>
+                <ConnectButton />
+              </TokenAction>
             </AddressInputLabel>
           ) : (
             <TokenInfoWrapper>

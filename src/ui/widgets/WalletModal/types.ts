@@ -7,10 +7,10 @@ export enum ConnectorNames {
   BSC = 'bsc'
 }
 
-export type Login = (connectorID: ConnectorNames) => void;
+export type Login = (connectorId: ConnectorNames) => void;
 
 export interface Config {
   title: string;
   icon: FC<SvgProps>;
-  connectorID: ConnectorNames;
+  connectorId: ConnectorNames;
 }

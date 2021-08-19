@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import useAuth from 'hooks/useAuth';
 import { connectorLocalStorageKey, ConnectorNames } from 'ui';
 import { networkLocalStorageKey, NetworkNames } from 'config';
+import { useAuth } from 'contexts';
 
 const _binanceChainListener = async () =>
   new Promise<void>((resolve) =>

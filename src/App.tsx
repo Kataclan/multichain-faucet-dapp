@@ -1,9 +1,9 @@
-import { GlobalStyle, PageLoader, SuspenseWithChunkError } from 'components';
-import { useAuth, useEagerConnect } from 'hooks';
 import React, { lazy } from 'react';
 import { Navigate, BrowserRouter as Router, useRoutes } from 'react-router-dom';
-import { LandingLayout } from 'components';
+import { useAuth } from 'contexts';
+import { useEagerConnect } from 'hooks';
 import { ResetCSS } from 'ui';
+import { LandingLayout, GlobalStyle, PageLoader, SuspenseWithChunkError } from 'components';
 
 const Landing = lazy(() => import('./views/Landing'));
 const NotFound = lazy(() => import('./views/NotFound'));
