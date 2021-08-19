@@ -53,12 +53,13 @@ const useAuth = () => {
             } else {
               setError(`${error.name}:  ${error.message}`);
             }
+            setInitialized(true);
           }
         });
       } else {
         setError(`${t('Unable to find connector')}:  ${t('The connector config is wrong')}`);
         window.localStorage.removeItem(previousConnectionLocalstorageKey);
-        setInitialized(false);
+        setInitialized(true);
       }
     },
     [t, activate]
