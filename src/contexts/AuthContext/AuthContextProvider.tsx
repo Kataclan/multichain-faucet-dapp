@@ -100,6 +100,8 @@ const AuthContextProvider: React.FC<{}> = ({ children }) => {
     // This avoids the initial flickering when account is not present yet
     if (window.localStorage.getItem(previousConnectionLocalstorageKey) === 'connected' && account) {
       setState({ initialized: true, error: '' });
+    } else if (window.localStorage.getItem(previousConnectionLocalstorageKey) === null) {
+      setState({ initialized: true, error: '' });
     }
   }, [account]);
 
