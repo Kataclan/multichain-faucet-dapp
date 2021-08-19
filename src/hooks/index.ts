@@ -1,5 +1,5 @@
 export { default as useActiveWeb3React } from './useActiveWeb3React';
-export { default as useAlreadyWithdrawn } from './useAlreadyWithdrawn';
+export { default as useAlreadyWithdrew } from './useAlreadyWithdrew';
 export { default as useConfirmTx } from './useConfirmTx';
 export { default as useDebounce } from './useDebounce';
 export { default as useEagerConnect } from './useEagerConnect';

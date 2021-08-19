@@ -28,7 +28,7 @@ const useAlreadyWithdrawn = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [options, account]);
 
-  return { allowedToWithdraw: data, loading, error };
+  return { allowedToWithdraw: data || false, loading, error };
 };
 
 export default useAlreadyWithdrawn;

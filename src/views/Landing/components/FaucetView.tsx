@@ -1,14 +1,12 @@
-import { ConnectButton } from 'components';
-import { useTokenAmount, useTranslation } from 'hooks';
-import { useActiveWeb3React } from 'hooks';
-import { useFaucet } from 'contexts';
-import styled, { useTheme } from 'styled-components';
-import { Flex, Text } from 'ui';
-import { PuffLoader } from 'react-spinners';
-import RequestTokensAction from './actions/RequestTokensAction';
 import { useMemo } from 'react';
+import { PuffLoader } from 'react-spinners';
+import styled, { useTheme } from 'styled-components';
+import { useFaucet } from 'contexts';
+import { useAlreadyWithdrew, useTokenAmount, useTranslation, useActiveWeb3React } from 'hooks';
+import { Flex, Text } from 'ui';
 import { getHiddenAccountStr } from 'utils';
-import useAllowedToWithdraw from 'hooks/useAlreadyWithdrawn';
+import { ConnectButton } from 'components';
+import RequestTokensAction from './actions/RequestTokensAction';
 
 const FaucetViewWrapper = styled(Flex)`
   flex-direction: column;
@@ -74,7 +72,7 @@ const FaucetView = () => {
   const { account } = useActiveWeb3React();
   const { isPendingTx, startTx, stopTx } = useFaucet();
   const { tokenAmount, loading: loadingTokenAmount } = useTokenAmount();
-  const { allowedToWithdraw, loading: loadingAllowedToWithDraw } = useAllowedToWithdraw();
+  const { allowedToWithdraw, loading: loadingAllowedToWithDraw } = useAlreadyWithdrew();
 
   const accountHidden = useMemo(() => getHiddenAccountStr(account), [account]);
 
