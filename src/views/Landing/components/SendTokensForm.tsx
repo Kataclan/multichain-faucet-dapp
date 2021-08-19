@@ -1,13 +1,8 @@
-import { AddressTabMenu } from 'components';
-import { AddressInputTabs } from 'components/AddressTabMenu/types';
-import { useSetState, useTranslation } from 'hooks';
-import { useMemo } from 'react';
+import { FaucetContractLink, TokenContractLink } from 'components';
+import { useTranslation } from 'hooks';
 import styled from 'styled-components';
 import { Flex, Heading, Text } from 'ui';
-import RequestTokensAction from './actions/RequestTokensAction';
-import SendTokensAction from './actions/SendTokensAction';
-import CustomAddressView from './CustomAddressView';
-import UserAddressView from './UserAddressView';
+import FaucetView from './FaucetView';
 
 interface SendTokensFormProps {
   tokenSymbol: string;
@@ -36,23 +31,21 @@ const SendTokensCardTitleWrapper = styled(Flex)`
   background-color: ${({ theme }) => theme.colors.background};
 `;
 
-const TabsWrapper = styled(Flex)`
-  width: 100%;
-  justify-content: center;
-`;
+// const TabsWrapper = styled(Flex)`
+//   width: 100%;
+//   justify-content: center;
+// `;
 
 const SendTokensCardContentWrapper = styled(Flex)`
   flex-direction: column;
   width: 100%;
-  align-items: center;
-  justify-content: center;
-  height: 200px;
   background-color: ${({ theme }) => theme.colors.foreground};
 `;
 
 const SendTokensCardActionsWrapper = styled(Flex)`
   width: 100%;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 16px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.outline};
   background-color: ${({ theme }) => theme.colors.background};
   border-bottom-right-radius: ${({ theme }) => theme.radii.medium};
@@ -61,56 +54,18 @@ const SendTokensCardActionsWrapper = styled(Flex)`
 
 const SendTokensForm: React.FC<SendTokensFormProps> = ({ tokenSymbol, onClickSend }) => {
   const { t } = useTranslation();
-  const [formState, setFormState] = useSetState<{
-    selectedTab: AddressInputTabs;
-    address: string;
-    error: string;
-    isSendClicked: boolean;
-    isSucceddedAfterFail: boolean;
-  }>({
-    selectedTab: 0,
-    address: null,
-    error: null,
-    isSendClicked: false,
-    isSucceddedAfterFail: false
-  });
-
-  const handleChangeTab = (selectedTab: AddressInputTabs) => {
-    setFormState({ selectedTab });
-  };
-
-  const view = useMemo(() => {
-    switch (formState.selectedTab) {
-      case AddressInputTabs.User:
-        return <UserAddressView />;
-      case AddressInputTabs.Custom:
-      default:
-        return <CustomAddressView />;
-    }
-  }, [formState.selectedTab]);
-
-  const action = useMemo(() => {
-    switch (formState.selectedTab) {
-      case AddressInputTabs.User:
-        return <RequestTokensAction />;
-      case AddressInputTabs.Custom:
-      default:
-        return <SendTokensAction />;
-    }
-  }, [formState.selectedTab]);
 
   return (
     <SendTokensCard>
       <SendTokensCardTitleWrapper p={4}>
-        <Heading scale="md"> {t(`Send ${tokenSymbol || '?'}`)}</Heading>
+        <Heading scale="md"> {t(`${tokenSymbol || '?'} Faucet`)}</Heading>
         <Text color="textSubtle" mt={2}></Text>
       </SendTokensCardTitleWrapper>
-      <TabsWrapper>
-        <AddressTabMenu selectedTab={formState.selectedTab} onTabChange={handleChangeTab} />
-      </TabsWrapper>
-      <SendTokensCardContentWrapper>{view}</SendTokensCardContentWrapper>
+      <SendTokensCardContentWrapper>
+        <FaucetView />
+      </SendTokensCardContentWrapper>
       <SendTokensCardActionsWrapper pt={2} pb={2}>
-        {action}
+        <FaucetContractLink /> <TokenContractLink />
       </SendTokensCardActionsWrapper>
     </SendTokensCard>
   );

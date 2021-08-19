@@ -5,23 +5,23 @@ import { ethers } from 'ethers';
 import { getBscRpcUrl, getPolygonRpcUrl } from './getRpcUrl';
 import { ConnectorNames } from 'ui';
 import Web3 from 'web3';
-import { ChainId } from 'config';
+import { NetworkId } from 'config';
 
 const POLLING_INTERVAL = 12000;
 const bscRpcUrl = getBscRpcUrl();
 const polygonRpcUrl = getPolygonRpcUrl();
 
 const injected = new InjectedConnector({
-  supportedChainIds: [ChainId.Eth, ChainId.Bsc, ChainId.BscTestnet, ChainId.Polygon, ChainId.Mumbai]
+  supportedChainIds: [NetworkId.Eth, NetworkId.Bsc, NetworkId.BscTestnet, NetworkId.Polygon, NetworkId.Mumbai]
 });
 
 const walletconnect = new WalletConnectConnector({
-  rpc: { [ChainId.Bsc]: bscRpcUrl, [ChainId.Polygon]: polygonRpcUrl },
+  rpc: { [NetworkId.Bsc]: bscRpcUrl, [NetworkId.Polygon]: polygonRpcUrl },
   qrcode: true,
   pollingInterval: POLLING_INTERVAL
 });
 
-const bscConnector = new BscConnector({ supportedChainIds: [ChainId.Bsc] });
+const bscConnector = new BscConnector({ supportedChainIds: [NetworkId.Bsc] });
 
 export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
   injected: injected,

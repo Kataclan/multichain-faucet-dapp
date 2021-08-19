@@ -1,8 +1,10 @@
-export * from './getRpcUrl';
 export * from './contractHelpers';
+export * from './getRpcUrl';
+export * from './setupNetworkHelpers';
 export * from './wallet';
 export * from './web3React';
 export * from './bsc';
 export { default as isFaucetSupportedInChain } from './isFaucetSupportedInChain';
-export { default as getRpcProvider } from './getRpcProvider';
 export { default as getChainIconElement } from './getChainIconElement';
+export { default as getHiddenAccountStr } from './getHiddenAccountStr';
+export { default as getRpcProvider } from './getRpcProvider';

@@ -1,8 +1,9 @@
+import { NetworkConfig, networkLocalStorageKey } from 'config';
 import React from 'react';
+import { getChainIconElement } from 'utils';
 import Button from '../../components/Button/Button';
 import Text from '../../components/Text/Text';
-import { networkLocalStorageKey } from './config';
-import { NetworkSetup, NetworkConfig } from './types';
+import { NetworkSetup } from './types';
 
 interface Props {
   networkConfig: NetworkConfig;
@@ -12,22 +13,23 @@ interface Props {
 }
 
 const NetworkCard: React.FC<Props> = ({ networkSetup, networkConfig, onDismiss, mb }) => {
-  const { title, icon: Icon } = networkConfig;
+  const { id, displayName } = networkConfig;
+  const Icon = getChainIconElement(id);
   return (
     <Button
       width="100%"
       variant="tertiary"
       onClick={() => {
-        networkSetup(networkConfig.chainId);
-        window.localStorage.setItem(networkLocalStorageKey, networkConfig.networkId);
+        networkSetup(networkConfig.id);
+        window.localStorage.setItem(networkLocalStorageKey, networkConfig.name);
         onDismiss();
       }}
       style={{ justifyContent: 'space-between' }}
       mb={mb}
-      id={`network-connect-${title.toLocaleLowerCase()}`}
+      id={`network-connect-${displayName.toLocaleLowerCase()}`}
     >
       <Text bold color="primary" mr="16px">
-        {title}
+        {displayName}
       </Text>
       <Icon width="32px" />
     </Button>

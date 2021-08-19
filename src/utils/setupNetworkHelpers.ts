@@ -1,11 +1,9 @@
-import { ChainId } from 'config';
-import { Networks } from 'ui/widgets/NetworkModal';
-import networks from 'ui/widgets/NetworkModal/config';
+import { NetworkId, NetworkNames, networks } from 'config';
 import { bscNodes, bscTestNodes, mumbaiNodes, polygonNodes } from 'utils';
 
-export const findNetworkByNetworkName = (networkId: Networks) => networks.find((n) => n.networkId === networkId);
+export const findNetworkByChainId = (chainId: number) => networks.find((n) => n.id === chainId);
 
-export const findNetworkByChainId = (chainId: number) => networks.find((n) => n.chainId === chainId);
+export const findNetworkByNetworkName = (name: NetworkNames) => networks.find((n) => n.name === name);
 
 export const setupEthereumNetwork = async () => {
   const _provider = window.ethereum;
@@ -13,7 +11,7 @@ export const setupEthereumNetwork = async () => {
     try {
       await _provider.request({
         method: 'wallet_switchEthereumChain',
-        params: [{ chainId: `0x${ChainId.Eth.toString(16)}` }]
+        params: [{ chainId: `0x${NetworkId.Eth.toString(16)}` }]
       });
       return true;
     } catch (error) {
@@ -33,7 +31,7 @@ export const setupBSCTestnetNetwork = async () => {
         method: 'wallet_addEthereumChain',
         params: [
           {
-            chainId: `0x${ChainId.BscTestnet.toString(16)}`,
+            chainId: `0x${NetworkId.BscTestnet.toString(16)}`,
             chainName: 'Ganache5',
             nativeCurrency: {
               name: 'BNB',
@@ -41,7 +39,7 @@ export const setupBSCTestnetNetwork = async () => {
               decimals: 18
             },
             rpcUrls: bscTestNodes,
-            blockExplorerUrls: [`https://testnet.bscscan.com/`]
+            blockExplorerUrls: [process.env.REACT_APP_BSC_TEST_SCANNER]
           }
         ]
       });
@@ -64,7 +62,7 @@ export const setupBSCNetwork = async () => {
         method: 'wallet_addEthereumChain',
         params: [
           {
-            chainId: `0x${ChainId.Bsc.toString(16)}`,
+            chainId: `0x${NetworkId.Bsc.toString(16)}`,
             chainName: 'Binance Smart Chain',
             nativeCurrency: {
               name: 'BNB',
@@ -72,7 +70,7 @@ export const setupBSCNetwork = async () => {
               decimals: 18
             },
             rpcUrls: bscNodes,
-            blockExplorerUrls: [`https://bscscan.com`]
+            blockExplorerUrls: [process.env.REACT_APP_BSC_SCANNER]
           }
         ]
       });
@@ -95,7 +93,7 @@ export const setupPolygonNetwork = async () => {
         method: 'wallet_addEthereumChain',
         params: [
           {
-            chainId: `0x${ChainId.Polygon.toString(16)}`,
+            chainId: `0x${NetworkId.Polygon.toString(16)}`,
             chainName: 'Matic Mainnet',
             nativeCurrency: {
               name: 'MATIC',
@@ -103,7 +101,7 @@ export const setupPolygonNetwork = async () => {
               decimals: 18
             },
             rpcUrls: polygonNodes,
-            blockExplorerUrls: [`https://polygonscan.com/`]
+            blockExplorerUrls: [process.env.REACT_APP_POLYGON_SCANNER]
           }
         ]
       });
@@ -126,7 +124,7 @@ export const setupMumbaiNetwork = async () => {
         method: 'wallet_addEthereumChain',
         params: [
           {
-            chainId: `0x${ChainId.Mumbai.toString(16)}`,
+            chainId: `0x${NetworkId.Mumbai.toString(16)}`,
             chainName: 'Mumbai Testnet',
             nativeCurrency: {
               name: 'MATIC',
@@ -134,7 +132,7 @@ export const setupMumbaiNetwork = async () => {
               decimals: 18
             },
             rpcUrls: mumbaiNodes,
-            blockExplorerUrls: [`https://mumbai.polygonscan.com/`]
+            blockExplorerUrls: [process.env.REACT_APP_MUMBAI_SCANNER]
           }
         ]
       });
@@ -149,18 +147,18 @@ export const setupMumbaiNetwork = async () => {
   }
 };
 
-export const setupNetworkById = async (chainId: ChainId) => {
+export const setupNetworkById = async (chainId: NetworkId) => {
   switch (chainId) {
-    case ChainId.Eth:
+    case NetworkId.Eth:
       return setupEthereumNetwork();
-    case ChainId.Bsc:
+    case NetworkId.Bsc:
       return setupBSCNetwork();
     default:
-    case ChainId.BscTestnet:
+    case NetworkId.BscTestnet:
       return setupBSCTestnetNetwork();
-    case ChainId.Polygon:
+    case NetworkId.Polygon:
       return setupPolygonNetwork();
-    case ChainId.Mumbai:
+    case NetworkId.Mumbai:
       return setupMumbaiNetwork();
   }
 };

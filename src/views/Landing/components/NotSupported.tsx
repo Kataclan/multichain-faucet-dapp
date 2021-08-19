@@ -22,7 +22,7 @@ const NotSupported = () => {
   return (
     <NotSupportedWrapper p={4}>
       <Heading color="warning" scale="md" mb={4}>
-        {t(`This faucet is not supported in ${network?.title}`)}
+        {t(`This faucet is not supported in ${network?.displayName}`)}
       </Heading>
       <Text>{t('Connect to another chain through the menu button or directly in your wallet')}</Text>
     </NotSupportedWrapper>

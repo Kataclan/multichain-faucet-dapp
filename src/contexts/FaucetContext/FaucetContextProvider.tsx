@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import { ChainId } from 'config';
+import { NetworkId } from 'config';
 import { useSetState, useActiveWeb3React } from 'hooks';
 import { isFaucetSupportedInChain } from 'utils';
 import { FaucetContextApi, FaucetState } from './types';
@@ -24,7 +24,7 @@ const FaucetContextProvider: React.FC<{}> = ({ children }) => {
   const [state, setState] = useSetState(initialState);
 
   const init = useCallback(
-    (_chainId: ChainId) => {
+    (_chainId: NetworkId) => {
       const isSupported = isFaucetSupportedInChain(_chainId);
       setState({ isSupported, isLoading: false, initialized: true });
     },

@@ -13,12 +13,5 @@ const contracts = {
     137: process.env.REACT_APP_POLYGON_TOKEN_ADDRESS,
     80001: process.env.REACT_APP_MUMBAI_TOKEN_ADDRESS
   },
-  crowdsale: {
-    1: process.env.REACT_APP_ETH_CROWDSALE_ADDRESS,
-    56: process.env.REACT_APP_BSC_CROWDSALE_ADDRESS,
-    97: process.env.REACT_APP_BSC_TEST_CROWDSALE_ADDRESS,
-    137: process.env.REACT_APP_POLYGON_CROWDSALE_ADDRESS,
-    80001: process.env.REACT_APP_MUMBAI_CROWDSALE_ADDRESS
-  }
 };
 export default contracts;

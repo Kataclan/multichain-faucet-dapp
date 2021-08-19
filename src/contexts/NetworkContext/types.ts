@@ -1,19 +1,4 @@
-import { FC } from 'react';
-
-export enum Networks {
-  ETH = 'eth',
-  Bsc = 'bsc',
-  BSCTest = 'bscTestnet',
-  Polygon = 'polygon',
-  Mumbai = 'mumbai'
-}
-
-export interface NetworkConfig {
-  chainId: number;
-  title: string;
-  icon: FC;
-  networkId: Networks;
-}
+import { NetworkConfig } from 'config';
 
 export interface NetworkState {
   isLoaded: boolean;

@@ -1,20 +1,16 @@
-import { Address, ChainId, contracts } from 'config';
+import { Address, NetworkId, contracts } from 'config';
 import { sha3 } from 'web3-utils';
 
-export const getNetworkAddress = (chainId: ChainId, address: Address): string => {
-  return address[chainId] ? address[chainId] : address[ChainId.Bsc];
+export const getNetworkAddress = (chainId: NetworkId, address: Address): string => {
+  return address[chainId] ? address[chainId] : address[NetworkId.Bsc];
 };
 
-export const getFaucetAddress = (chainId: ChainId = ChainId.BscTestnet): string => {
+export const getFaucetAddress = (chainId: NetworkId = NetworkId.BscTestnet): string => {
   return getNetworkAddress(chainId, contracts.faucet);
 };
 
-export const getTokenAddress = (chainId: ChainId = ChainId.BscTestnet): string => {
+export const getTokenAddress = (chainId: NetworkId = NetworkId.BscTestnet): string => {
   return getNetworkAddress(chainId, contracts.token);
-};
-
-export const getCrowdsaleAddress = (chainId: ChainId = ChainId.BscTestnet): string => {
-  return getNetworkAddress(chainId, contracts.crowdsale);
 };
 
 export const isChecksumAddress = (address) => {

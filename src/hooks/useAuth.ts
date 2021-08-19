@@ -9,11 +9,10 @@ import {
   UserRejectedRequestError as UserRejectedRequestErrorWalletConnect,
   WalletConnectConnector
 } from '@web3-react/walletconnect-connector';
-import useTranslation from './useTranslation';
+import { networkLocalStorageKey } from 'config';
 import { connectorLocalStorageKey, ConnectorNames } from 'ui';
-import { connectorsByName } from 'utils';
-import { networkLocalStorageKey } from 'ui/widgets/NetworkModal';
-import { setupNetworkById } from 'contexts/NetworkContext/setupNetworkHelpers';
+import useTranslation from './useTranslation';
+import { connectorsByName, setupNetworkById } from 'utils';
 import useActiveWeb3React from './useActiveWeb3React';
 
 const useAuth = () => {
@@ -28,7 +27,6 @@ const useAuth = () => {
       if (connector) {
         activate(connector, async (error: Error) => {
           if (error instanceof UnsupportedChainIdError) {
-            console.log('HOLA');
             const hasSetup = await setupNetworkById(chainId);
             if (hasSetup) {
               activate(connector);

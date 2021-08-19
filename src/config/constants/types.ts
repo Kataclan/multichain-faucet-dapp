@@ -1,10 +1,22 @@
-export type PageMeta = {
-  title: string;
-  description?: string;
-  image?: string;
-};
+export type SerializedBigNumber = string;
 
-export enum ChainId {
+export interface Address {
+  1: string; // ETH
+  56: string; // BSC
+  97?: string; // BSC TEST
+  137?: string; // POLYGON
+  80001?: string; // MUMBAI
+}
+
+export enum NetworkNames {
+  ETH = 'eth',
+  Bsc = 'bsc',
+  BSCTest = 'bscTestnet',
+  Polygon = 'polygon',
+  Mumbai = 'mumbai'
+}
+
+export enum NetworkId {
   Eth = 1,
   Bsc = 56,
   BscTestnet = 97,
@@ -12,16 +24,22 @@ export enum ChainId {
   Mumbai = 80001
 }
 
-export const ChainsById: { [chainId in ChainId]: string } = {
-  [ChainId.Eth]: 'eth',
-  [ChainId.Bsc]: 'bsc',
-  [ChainId.BscTestnet]: 'bscTestnet',
-  [ChainId.Polygon]: 'polygon',
-  [ChainId.Mumbai]: 'mumbai'
+export const NetworksById: { [networkId in NetworkId]: string } = {
+  [NetworkId.Eth]: 'eth',
+  [NetworkId.Bsc]: 'bsc',
+  [NetworkId.BscTestnet]: 'bscTestnet',
+  [NetworkId.Polygon]: 'polygon',
+  [NetworkId.Mumbai]: 'mumbai'
 };
 
-export interface Address {
-  56: string;
-  97?: string;
-  1337?: string;
+export interface NetworkConfig {
+  id: NetworkId;
+  name: NetworkNames;
+  displayName: string;
 }
+
+export type PageMeta = {
+  title: string;
+  description?: string;
+  image?: string;
+};

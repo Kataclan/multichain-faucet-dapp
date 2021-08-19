@@ -1,17 +1,17 @@
-import { ChainId } from 'config';
+import { NetworkId } from 'config';
 import { BinanceIcon, PolygonIcon, EthereumIcon } from 'ui';
 
-const getChainIconElement = (chainId: ChainId) => {
+const getChainIconElement = (chainId: NetworkId) => {
   switch (chainId) {
-    case ChainId.Bsc:
-    case ChainId.BscTestnet:
+    case NetworkId.Bsc:
+    case NetworkId.BscTestnet:
       return BinanceIcon;
 
-    case ChainId.Polygon:
-    case ChainId.Mumbai:
+    case NetworkId.Polygon:
+    case NetworkId.Mumbai:
       return PolygonIcon;
 
-    case ChainId.Eth:
+    case NetworkId.Eth:
       return EthereumIcon;
     default:
       return null;

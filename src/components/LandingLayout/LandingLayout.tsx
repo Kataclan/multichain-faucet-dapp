@@ -1,13 +1,11 @@
 import React from 'react';
 import NetworkButton from 'components/NetworkButton';
-import { ChainId } from 'config';
-import { findNetworkByChainId, setupNetworkById } from 'contexts/NetworkContext/setupNetworkHelpers';
-import { useTranslation } from 'hooks';
-import { useActiveWeb3React } from 'hooks';
+import { NetworkId } from 'config';
+import { findNetworkByChainId, setupNetworkById } from 'utils';
+import { useTranslation, useActiveWeb3React } from 'hooks';
 import { Outlet } from 'react-router';
 import styled from 'styled-components';
-import { Flex, LandingNavbar, Text } from 'ui';
-import { MENU_HEIGHT } from 'ui/config';
+import { Flex, LandingNavbar, Text, MENU_HEIGHT } from 'ui';
 
 const LandingLayoutRoot = styled.div`
   padding: 0;
@@ -51,7 +49,7 @@ const LandingLayout: React.FC = ({ children }) => {
     ? `${account.substring(0, 4)}...${account.substring(account.length - 4)}`
     : t('Not connected');
 
-  const handleSelectNetwork = (selectedChain: ChainId) => {
+  const handleSelectNetwork = (selectedChain: NetworkId) => {
     setupNetworkById(selectedChain);
   };
 

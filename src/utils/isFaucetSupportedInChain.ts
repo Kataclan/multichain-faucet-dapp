@@ -1,18 +1,18 @@
-import { ChainId } from 'config';
+import { NetworkId } from 'config';
 
-const isFaucetSupportedInChain = (chainId: ChainId) => {
+const isFaucetSupportedInChain = (chainId: NetworkId) => {
   switch (chainId) {
-    case ChainId.Eth:
+    case NetworkId.Eth:
       return process.env.REACT_APP_ETH_FAUCET_ADDRESS !== '' && process.env.REACT_APP_ETH_TOKEN_ADDRESS !== '';
-    case ChainId.Bsc:
+    case NetworkId.Bsc:
       return process.env.REACT_APP_BSC_FAUCET_ADDRESS !== '' && process.env.REACT_APP_BSC_TOKEN_ADDRESS !== '';
-    case ChainId.BscTestnet:
+    case NetworkId.BscTestnet:
       return (
         process.env.REACT_APP_BSC_TEST_FAUCET_ADDRESS !== '' && process.env.REACT_APP_BSC_TEST_TOKEN_ADDRESS !== ''
       );
-    case ChainId.Polygon:
+    case NetworkId.Polygon:
       return process.env.REACT_APP_POLYGON_FAUCET_ADDRESS !== '' && process.env.REACT_APP_POLYGON_TOKEN_ADDRESS !== '';
-    case ChainId.Mumbai:
+    case NetworkId.Mumbai:
       return process.env.REACT_APP_MUMBAI_FAUCET_ADDRESS !== '' && process.env.REACT_APP_MUMBAI_TOKEN_ADDRESS !== '';
     default:
       return false;
