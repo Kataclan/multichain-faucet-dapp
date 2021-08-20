@@ -9,12 +9,14 @@ const ResetCSS = createGlobalStyle`
     src: local("Biko"),url("fonts/biko_regular.otf") format("truetype");
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
   }
   @font-face {
     font-family: "Biko";
     src:local("Biko"), url("fonts/biko_bold.otf") format("truetype");
     font-weight: bold;
     font-style: normal;
+    font-display: swap;
   }
 
   html, body, div, span, applet, object, iframe,
