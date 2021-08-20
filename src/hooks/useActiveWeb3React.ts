@@ -18,7 +18,7 @@ const useActiveWeb3React = (): ActiveWeb3ReactContext => {
   const { library, chainId, ...web3React } = useWeb3React();
   const refEth = useRef(library);
   const defaultChainRpcProvider = useMemo(() => getRpcProvider(chainId), [chainId]);
-  const defaultChainId = parseInt(process.env.REACT_APP_DEFAULT_CHAIN_ID, 10);
+  const defaultChainId = parseInt(window.openfaucet.REACT_APP_DEFAULT_CHAIN_ID, 10);
 
   const [state, setState] = useSetState({
     web3: new Web3(library || defaultChainRpcProvider),

@@ -32,19 +32,28 @@ const MumbaiConfig: NetworkConfig = {
 
 const getNetworks = () => {
   const networkConfigs: NetworkConfig[] = [];
-  if (process.env.REACT_APP_BSC_FAUCET_ADDRESS !== '' && process.env.REACT_APP_BSC_TOKEN_ADDRESS !== '') {
+  if (window.openfaucet.REACT_APP_BSC_FAUCET_ADDRESS !== '' && window.openfaucet.REACT_APP_BSC_TOKEN_ADDRESS !== '') {
     networkConfigs.push(BSCConfig);
   }
-  if (process.env.REACT_APP_BSC_TEST_FAUCET_ADDRESS !== '' && process.env.REACT_APP_BSC_TEST_TOKEN_ADDRESS !== '') {
+  if (
+    window.openfaucet.REACT_APP_BSC_TEST_FAUCET_ADDRESS !== '' &&
+    window.openfaucet.REACT_APP_BSC_TEST_TOKEN_ADDRESS !== ''
+  ) {
     networkConfigs.push(BSCTestnetConfig);
   }
-  if (process.env.REACT_APP_ETH_FAUCET_ADDRESS !== '' && process.env.REACT_APP_ETH_TOKEN_ADDRESS !== '') {
+  if (window.openfaucet.REACT_APP_ETH_FAUCET_ADDRESS !== '' && window.openfaucet.REACT_APP_ETH_TOKEN_ADDRESS !== '') {
     networkConfigs.push(EthConfig);
   }
-  if (process.env.REACT_APP_POLYGON_FAUCET_ADDRESS !== '' && process.env.REACT_APP_POLYGON_TOKEN_ADDRESS !== '') {
+  if (
+    window.openfaucet.REACT_APP_POLYGON_FAUCET_ADDRESS !== '' &&
+    window.openfaucet.REACT_APP_POLYGON_TOKEN_ADDRESS !== ''
+  ) {
     networkConfigs.push(PolygonConfig);
   }
-  if (process.env.REACT_APP_MUMBAI_FAUCET_ADDRESS !== '' && process.env.REACT_APP_MUMBAI_TOKEN_ADDRESS !== '') {
+  if (
+    window.openfaucet.REACT_APP_MUMBAI_FAUCET_ADDRESS !== '' &&
+    window.openfaucet.REACT_APP_MUMBAI_TOKEN_ADDRESS !== ''
+  ) {
     networkConfigs.push(MumbaiConfig);
   }
   return networkConfigs;

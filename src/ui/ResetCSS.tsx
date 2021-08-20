@@ -6,13 +6,13 @@ const ResetCSS = createGlobalStyle`
   /* prettier-ignore */
   @font-face {
     font-family: "Biko";
-    src: local("Biko"),url("/fonts/biko_regular.otf") format("truetype");
+    src: local("Biko"),url("fonts/biko_regular.otf") format("truetype");
     font-weight: normal;
     font-style: normal;
   }
   @font-face {
     font-family: "Biko";
-    src:local("Biko"), url("/fonts/biko_bold.otf") format("truetype");
+    src:local("Biko"), url("fonts/biko_bold.otf") format("truetype");
     font-weight: bold;
     font-style: normal;
   }

@@ -18,11 +18,7 @@ function Landing() {
   const { isLoading, isSupported, tokenSymbol } = useFaucet();
 
   const renderFormOrError = () => {
-    return isSupported ? (
-      <SendToAddressForm tokenSymbol={tokenSymbol} />
-    ) : (
-      <NotSupported />
-    );
+    return isSupported ? <SendToAddressForm tokenSymbol={tokenSymbol} /> : <NotSupported />;
   };
 
   return <LandingPage>{isLoading ? <PageLoader /> : renderFormOrError()}</LandingPage>;
