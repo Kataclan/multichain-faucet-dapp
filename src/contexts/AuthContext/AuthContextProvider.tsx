@@ -32,7 +32,7 @@ const AuthContextProvider: React.FC<{}> = ({ children }) => {
   const login = useCallback(
     // It uses the connector ID name to retrieve the connector from web3React config, and uses
     // default chain id env variable as default chain to connect
-    (connectorID: ConnectorNames, networkId = parseInt(window.openfaucet.REACT_APP_DEFAULT_CHAIN_ID, 10)) => {
+    (connectorID: ConnectorNames, networkId = parseInt(process.env.REACT_APP_DEFAULT_CHAIN_ID, 10)) => {
       const connector = connectorsByName[connectorID];
       if (connector) {
         activate(connector, async (error: Error) => {

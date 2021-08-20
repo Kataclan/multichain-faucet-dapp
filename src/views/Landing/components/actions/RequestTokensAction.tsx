@@ -24,7 +24,7 @@ const RequestTokensAction: React.FC<{
 
   return (
     <Button variant="secondary" disabled={!account || !allowed || disabled} onClick={() => handleSendTokens()}>
-      {allowed ? `${t('WITHDRAW')} ${window.openfaucet.REACT_APP_FAUCET_TOKEN_SYMBOL}` : t('Not allowed')}
+      {allowed ? `${t('WITHDRAW')} ${process.env.REACT_APP_FAUCET_TOKEN_SYMBOL}` : t('Not allowed')}
     </Button>
   );
 };

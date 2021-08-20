@@ -13,7 +13,7 @@ const initialState: FaucetState = {
 
 const FaucetContext = React.createContext<FaucetContextApi>({
   ...initialState,
-  tokenSymbol: window.openfaucet.REACT_APP_FAUCET_TOKEN_SYMBOL,
+  tokenSymbol: process.env.REACT_APP_FAUCET_TOKEN_SYMBOL,
   startTx: () => null,
   stopTx: () => null
 });
@@ -45,7 +45,7 @@ const FaucetContextProvider: React.FC<{}> = ({ children }) => {
 
   return (
     <FaucetContext.Provider
-      value={{ ...state, tokenSymbol: window.openfaucet.REACT_APP_FAUCET_TOKEN_SYMBOL ?? '?', stopTx, startTx }}
+      value={{ ...state, tokenSymbol: process.env.REACT_APP_FAUCET_TOKEN_SYMBOL ?? '?', stopTx, startTx }}
     >
       {children}
     </FaucetContext.Provider>

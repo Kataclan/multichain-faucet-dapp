@@ -107,7 +107,7 @@ const FaucetView = () => {
                   {loadingTokenAmount ? (
                     <PuffLoader size={12} color={theme.colors.primary} />
                   ) : (
-                    `${tokenAmount} ${window.openfaucet.REACT_APP_FAUCET_TOKEN_SYMBOL}`
+                    `${tokenAmount} ${process.env.REACT_APP_FAUCET_TOKEN_SYMBOL}`
                   )}{' '}
                 </TokenInfoValue>
               </TokenInfo>

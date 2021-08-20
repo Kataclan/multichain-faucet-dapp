@@ -1,5 +1,5 @@
 import React, { lazy } from 'react';
-import { BrowserRouter as Router, useRoutes } from 'react-router-dom';
+import { Navigate, BrowserRouter as Router, useRoutes } from 'react-router-dom';
 import { useAuth } from 'contexts';
 import { useEagerConnect } from 'hooks';
 import { ResetCSS } from 'ui';
@@ -13,13 +13,13 @@ const App: React.FC = (): JSX.Element => {
     path: '/',
     element: <LandingLayout />,
     children: [
+      { path: '*', element: <Navigate to="/404" /> },
       { path: '/', element: <Landing /> },
-      { path: '*', element: <Landing /> },
       { path: '404', element: <NotFound /> }
     ]
   };
 
-  const routing = useRoutes([landingRoutes], window.openfaucet.SERVER_BASENAME);
+  const routing = useRoutes([landingRoutes]);
   return routing;
 };
 
